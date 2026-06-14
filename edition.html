@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Routine — Édition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --ink: #0D1B2A; --jade: #1D9E75; --jade-light: #9FE1CB; --jade-dark: #0F6E56; --sand: #F0ECE0; --sand-dark: #DDD8CC; --slate: #4A5568; --slate-light: #718096; --white: #FFFFFF; --off-white: #F8F7F4; }
+body { font-family: 'Inter', sans-serif; color: var(--ink); background: var(--off-white); }
+nav { background: rgba(13,27,42,0.96); backdrop-filter: blur(8px); padding: 1.25rem 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--sand); text-decoration: none; }
+.nav-logo span { color: var(--jade); }
+.nav-back { font-size: 13px; color: rgba(240,236,224,0.55); text-decoration: none; }
+.nav-back:hover { color: var(--jade-light); }
+.cover { background: var(--ink); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+.cover-orb { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(29,158,117,0.15) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; }
+.cover-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--jade); margin-bottom: 1rem; }
+.cover-flag { font-size: 64px; margin-bottom: 1rem; }
+.cover-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 52px); color: var(--sand); line-height: 1.1; margin-bottom: 0.5rem; }
+.cover-sub { font-size: 15px; color: rgba(240,236,224,0.5); margin-bottom: 0.5rem; }
+.cover-date { font-size: 12px; color: var(--jade); letter-spacing: 0.08em; }
+.main { max-width: 700px; margin: 0 auto; padding: 3rem 2rem; }
+.section { margin-bottom: 2.5rem; }
+.section-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--jade); font-weight: 500; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 0.5px solid var(--sand-dark); }
+.section-title { font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1.2; margin-bottom: 0.5rem; color: var(--ink); }
+.section-sub { font-size: 13px; color: var(--slate-light); margin-bottom: 1rem; font-style: italic; }
+.body-text { font-size: 15px; line-height: 1.8; color: var(--ink); margin-bottom: 1rem; }
+.stat-card { background: var(--ink); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.25rem 0; display: flex; align-items: center; gap: 1rem; }
+.stat-big { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--jade); flex-shrink: 0; }
+.stat-text { font-size: 13px; color: rgba(240,236,224,0.6); line-height: 1.5; }
+.pull-quote { border-left: 3px solid var(--jade); padding: 0.75rem 1.25rem; margin: 1.25rem 0; font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--ink); line-height: 1.5; border-radius: 0; }
+.lesson-box { border: 0.5px solid var(--sand-dark); border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; font-size: 14px; line-height: 1.6; background: var(--white); }
+.lesson-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate-light); font-weight: 500; margin-bottom: 6px; }
+.defi-box { background: #E1F5EE; border-radius: 8px; padding: 1rem 1.25rem; font-size: 14px; color: #085041; margin: 1rem 0; }
+.dark-box { background: var(--ink); border-radius: 8px; padding: 1.25rem; margin: 1.25rem 0; }
+.dark-box-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--jade); margin-bottom: 8px; font-weight: 500; }
+.dark-box-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--sand); margin-bottom: 8px; }
+.dark-box-body { font-size: 13px; color: rgba(240,236,224,0.65); line-height: 1.7; }
+.dark-box-sub { font-size: 12px; color: var(--jade); font-style: italic; margin-top: 6px; }
+.citation-block { border-left: 2px solid var(--sand-dark); padding: 1rem 1.25rem; margin: 1.25rem 0; font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--slate); }
+.citation-attr { font-family: 'Inter', sans-serif; font-size: 12px; font-style: normal; color: var(--slate-light); margin-top: 8px; display: block; letter-spacing: 0.06em; }
+.citation-modern { font-family: 'Inter', sans-serif; font-size: 13px; font-style: normal; color: var(--slate); margin-top: 8px; }
+.yt-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--jade-dark); border: 1px solid var(--jade-light); border-radius: 20px; padding: 4px 12px; text-decoration: none; margin-top: 8px; }
+.yt-link:hover { background: #E1F5EE; }
+.divider { border: none; border-top: 0.5px solid var(--sand-dark); margin: 2.5rem 0; }
+/* QUIZ */
+.quiz-section { background: var(--white); border: 0.5px solid var(--sand-dark); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+.quiz-q-num { font-size: 11px; color: var(--slate-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.quiz-q { font-size: 15px; font-weight: 500; margin-bottom: 0.75rem; }
+.quiz-opts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
+.quiz-opt { background: var(--off-white); border: 0.5px solid var(--sand-dark); border-radius: 8px; padding: 0.65rem 1rem; font-size: 14px; cursor: pointer; text-align: left; color: var(--ink); font-family: 'Inter', sans-serif; transition: all 0.15s; }
+.quiz-opt:hover { background: #E1F5EE; border-color: var(--jade-light); }
+.quiz-opt.correct { background: #E1F5EE; border-color: var(--jade); color: var(--jade-dark); }
+.quiz-opt.wrong { background: #FCEBEB; border-color: #F09595; color: #A32D2D; }
+.quiz-feedback { font-size: 13px; color: var(--slate); margin-bottom: 8px; display: none; }
+.quiz-next { background: var(--ink); color: var(--sand); border: none; padding: 0.6rem 1.25rem; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: 'Inter', sans-serif; display: none; }
+.quiz-next:hover { background: var(--jade-dark); }
+.quiz-nav { display: flex; align-items: center; justify-content: space-between; }
+.quiz-score-live { font-size: 13px; color: var(--slate-light); }
+.result-box { text-align: center; padding: 2rem; display: none; }
+.result-num { font-family: 'Playfair Display', serif; font-size: 52px; color: var(--jade); }
+.result-label { font-size: 16px; color: var(--slate); margin-bottom: 1rem; }
+.badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 1rem 0; }
+.badge { border: 0.5px solid var(--sand-dark); border-radius: 8px; padding: 6px 14px; font-size: 12px; display: flex; align-items: center; gap: 6px; }
+.badge.earned { border-color: var(--jade); color: var(--jade-dark); background: #E1F5EE; }
+.enigme-box { background: var(--off-white); border: 0.5px solid var(--sand-dark); border-radius: 8px; padding: 1.25rem; text-align: center; margin-bottom: 2rem; }
+.enigme-q { font-family: 'Playfair Display', serif; font-size: 17px; font-style: italic; color: var(--ink); margin-bottom: 1rem; }
+.enigme-toggle { background: var(--ink); color: var(--sand); border: none; padding: 0.5rem 1.25rem; border-radius: 6px; font-size: 13px; cursor: pointer; font-family: 'Inter', sans-serif; }
+.enigme-rep { font-size: 14px; color: var(--jade-dark); margin-top: 0.75rem; display: none; font-weight: 500; }
+.nav-bottom { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; border-top: 0.5px solid var(--sand-dark); flex-wrap: wrap; gap: 1rem; }
+.btn-archives { background: var(--ink); color: var(--sand); text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.btn-subscribe { background: var(--jade); color: var(--white); text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.loading-state { text-align: center; padding: 6rem 2rem; color: var(--slate-light); }
+@media (max-width: 640px) { nav { padding: 1rem 1.5rem; } .main { padding: 2rem 1rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Routine<span>.</span></a>
+  <a href="archives.html" class="nav-back">← Archives</a>
+</nav>
+
+<div id="loading-state" class="loading-state">Chargement de l'édition...</div>
+
+<div id="content" style="display:none;">
+  <div class="cover" id="cover">
+    <div class="cover-orb"></div>
+    <div class="cover-label">Édition du jour</div>
+    <div class="cover-flag" id="cover-flag">🌍</div>
+    <h1 class="cover-title" id="cover-title"></h1>
+    <div class="cover-sub" id="cover-sub"></div>
+    <div class="cover-date" id="cover-date"></div>
+  </div>
+
+  <main class="main">
+    <div class="section" id="section-pays"></div>
+    <hr class="divider">
+    <div class="section" id="section-perso"></div>
+    <hr class="divider">
+    <div class="section" id="section-art"></div>
+    <hr class="divider">
+    <div class="section" id="section-musique"></div>
+    <hr class="divider">
+    <div class="section" id="section-idee"></div>
+    <hr class="divider">
+    <div class="section" id="section-vivant"></div>
+    <hr class="divider">
+    <div class="section" id="section-citation"></div>
+    <hr class="divider">
+
+    <div class="enigme-box">
+      <div class="enigme-q" id="enigme-q"></div>
+      <button class="enigme-toggle" onclick="revealEnigme()">Voir la réponse</button>
+      <div class="enigme-rep" id="enigme-rep"></div>
+    </div>
+
+    <div class="quiz-section" id="quiz-section">
+      <div id="quiz-display">
+        <div class="quiz-q-num" id="q-num">Question 1 sur 5</div>
+        <div class="quiz-q" id="q-text"></div>
+        <div class="quiz-opts" id="q-opts"></div>
+        <div class="quiz-feedback" id="q-feedback"></div>
+        <div class="quiz-nav">
+          <div class="quiz-score-live" id="q-score">0 / 5</div>
+          <button class="quiz-next" id="q-next" onclick="nextQ()">Suivant →</button>
+        </div>
+      </div>
+      <div class="result-box" id="quiz-result">
+        <div class="result-num" id="res-num"></div>
+        <div class="result-label" id="res-label"></div>
+        <div class="badges" id="res-badges"></div>
+        <p style="font-size:13px;color:var(--slate-light);margin-top:1rem;">Points ajoutés à votre score Routine !</p>
+      </div>
+    </div>
+
+    <div class="nav-bottom">
+      <a href="archives.html" class="btn-archives">← Toutes les éditions</a>
+      <a href="/#newsletter" class="btn-subscribe">S'abonner gratuitement</a>
+    </div>
+  </main>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://zuahstlswkprzdmflekg.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1YWhzdGxzd2twcnpkbWZsZWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDU2MjMsImV4cCI6MjA5NzAyMTYyM30.-F0WRbiprAa-Zt1ih1QdsQzuuqVW2froK6Ddfvrqoik';
+
+let quizData = [], cur = 0, correct = 0, answered = false;
+
+function h(str) { return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+async function loadEdition() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  let url = id
+    ? `${SUPABASE_URL}/rest/v1/editions?id=eq.${id}&select=*`
+    : `${SUPABASE_URL}/rest/v1/editions?select=*&order=created_at.desc&limit=1`;
+
+  const res = await fetch(url, { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } });
+  const data = await res.json();
+  if (!data || !data.length) { document.getElementById('loading-state').textContent = 'Édition introuvable.'; return; }
+
+  const ed = data[0];
+  const c = ed.contenu;
+  document.title = `Routine · ${ed.date} · ${ed.pays_nom}`;
+
+  document.getElementById('cover-flag').textContent = c.pays?.flag || '🌍';
+  document.getElementById('cover-title').textContent = `${c.pays?.nom} — ${c.pays?.titre}`;
+  document.getElementById('cover-sub').textContent = c.pays?.intro || '';
+  document.getElementById('cover-date').textContent = ed.date;
+
+  document.getElementById('section-pays').innerHTML = `
+    <div class="section-eyebrow">🌍 Le monde</div>
+    <div class="section-title">${h(c.pays?.nom)} — ${h(c.pays?.titre)}</div>
+    <div class="body-text">${h(c.pays?.intro)}</div>
+    <div class="stat-card"><div class="stat-big">${h(c.pays?.chiffre)}</div><div class="stat-text">${h(c.pays?.chiffre_label)}</div></div>
+    <div class="pull-quote">${h(c.pays?.lecon)}</div>`;
+
+  document.getElementById('section-perso').innerHTML = `
+    <div class="section-eyebrow">👤 Destin extraordinaire</div>
+    <div class="section-title">${h(c.personnalite?.nom)}</div>
+    <div class="section-sub">${h(c.personnalite?.epoque)} · ${h(c.personnalite?.titre)}</div>
+    <div class="body-text">${h(c.personnalite?.histoire)}</div>
+    <div class="lesson-box"><div class="lesson-label">Leçon</div>${h(c.personnalite?.lecon)}</div>`;
+
+  document.getElementById('section-art').innerHTML = `
+    <div class="section-eyebrow">🎨 Art · ${h(c.art?.artiste)}</div>
+    <div class="section-title">${h(c.art?.oeuvre)} <span style="font-size:16px;color:var(--slate-light);font-family:Inter,sans-serif;">(${h(c.art?.annee)})</span></div>
+    <div class="body-text">${h(c.art?.description)}</div>
+    <div class="defi-box">✦ ${h(c.art?.defi)}</div>`;
+
+  document.getElementById('section-musique').innerHTML = `
+    <div class="section-eyebrow">🎵 Musique · ${h(c.musique?.artiste)}</div>
+    <div class="section-title">${h(c.musique?.titre)} <span style="font-size:16px;color:var(--slate-light);font-family:Inter,sans-serif;">(${h(c.musique?.annee)})</span></div>
+    <div class="body-text">${h(c.musique?.anecdote)}</div>
+    <div class="lesson-box"><div class="lesson-label">Ce que ça nous apprend</div>${h(c.musique?.lecon)}</div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=${encodeURIComponent(c.musique?.youtube_search || '')}" target="_blank">▶ Écouter sur YouTube</a>`;
+
+  document.getElementById('section-idee').innerHTML = `
+    <div class="dark-box">
+      <div class="dark-box-label">🧠 Idée du jour · ${h(c.idee?.langue)}</div>
+      <div class="dark-box-title">${h(c.idee?.mot)}</div>
+      <div class="dark-box-body">${h(c.idee?.definition)}</div>
+      <div class="dark-box-sub">${h(c.idee?.pourquoi)}</div>
+    </div>`;
+
+  document.getElementById('section-vivant').innerHTML = `
+    <div class="section-eyebrow">🦁 Le vivant · ${h(c.vivant?.animal)}</div>
+    <div class="body-text">${h(c.vivant?.fait1)}</div>
+    <div class="body-text">${h(c.vivant?.fait2)}</div>
+    <div class="lesson-box"><div class="lesson-label">Ce que ça nous apprend</div>${h(c.vivant?.lecon)}</div>`;
+
+  document.getElementById('section-citation').innerHTML = `
+    <div class="citation-block">
+      ${h(c.citation?.texte)}
+      <span class="citation-attr">— ${h(c.citation?.auteur)}</span>
+      <div class="citation-modern">${h(c.citation?.traduction)}</div>
+    </div>`;
+
+  document.getElementById('enigme-q').textContent = `🧩 ${c.enigme?.question || ''}`;
+  document.getElementById('enigme-rep').textContent = `Réponse : ${c.enigme?.reponse || ''}`;
+
+  quizData = c.quiz || [];
+  renderQ();
+
+  document.getElementById('loading-state').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+}
+
+function renderQ() {
+  if (!quizData.length) return;
+  const q = quizData[cur];
+  document.getElementById('q-num').textContent = `Question ${cur + 1} sur ${quizData.length}`;
+  document.getElementById('q-text').textContent = q.question;
+  document.getElementById('q-feedback').style.display = 'none';
+  document.getElementById('q-next').style.display = 'none';
+  answered = false;
+  const opts = document.getElementById('q-opts');
+  opts.innerHTML = q.options.map((o, i) =>
+    `<button class="quiz-opt" onclick="answer(${i})">${o}</button>`
+  ).join('');
+  document.getElementById('q-score').textContent = `${correct} / ${quizData.length}`;
+}
+
+function answer(idx) {
+  if (answered) return;
+  answered = true;
+  const q = quizData[cur];
+  document.querySelectorAll('.quiz-opt').forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.correct) b.classList.add('correct');
+    else if (i === idx && idx !== q.correct) b.classList.add('wrong');
+  });
+  if (idx === q.correct) correct++;
+  document.getElementById('q-score').textContent = `${correct} / ${quizData.length}`;
+  document.getElementById('q-next').style.display = 'block';
+}
+
+function nextQ() {
+  cur++;
+  if (cur < quizData.length) { renderQ(); }
+  else { showResult(); }
+}
+
+function showResult() {
+  document.getElementById('quiz-display').style.display = 'none';
+  const res = document.getElementById('quiz-result');
+  res.style.display = 'block';
+  document.getElementById('res-num').textContent = `${correct} / ${quizData.length}`;
+  const labels = ['', '', 'Continuez !', 'Pas mal !', 'Très bien !', 'Parfait !'];
+  document.getElementById('res-label').textContent = labels[correct] || 'Bien joué !';
+  const pts = correct * 20 + (correct === quizData.length ? 20 : 0) + 50;
+  document.getElementById('res-badges').innerHTML = [
+    { label: 'Routine lue', pts: 50, ok: true },
+    { label: 'Quiz réussi', pts: correct * 20, ok: correct >= 4 },
+    { label: 'Score parfait', pts: 20, ok: correct === quizData.length }
+  ].map(b => `<div class="badge ${b.ok ? 'earned' : ''}">${b.ok ? '★' : '○'} ${b.label} +${b.pts}pts</div>`).join('');
+}
+
+function revealEnigme() {
+  document.getElementById('enigme-rep').style.display = 'block';
+  event.target.style.display = 'none';
+}
+
+loadEdition();
+</script>
+</body>
+</html>
