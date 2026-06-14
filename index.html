@@ -205,54 +205,24 @@ footer { background: var(--ink); padding: 3rem 2rem; text-align: center; }
   <div class="section-inner">
     <div class="edition-header">
       <h2 class="edition-title">Édition du jour</h2>
-      <span class="edition-date-badge">Dimanche 14 juin 2026</span>
+      <span class="edition-date-badge" id="edition-date-badge">Chargement...</span>
     </div>
-    <div class="cards-grid">
-      <div class="edition-card">
-        <div class="card-flag">🇲🇳</div>
-        <div class="card-eyebrow">Le monde</div>
-        <div class="card-title">Mongolie — l'horizon qui n'en finit jamais</div>
-        <div class="card-body">13 millions de chevaux pour 3,5 millions d'habitants. Un monde nomade où la maison se déplace avec les saisons.</div>
-      </div>
-      <div class="edition-card">
-        <div class="card-eyebrow">Destin extraordinaire</div>
-        <div class="card-title">Marie Curie — deux Prix Nobel, un hangar glacé</div>
-        <div class="card-body">En 1898, sans équipe ni financement, elle découvre le radium. Seule personne doublement nobélisée dans l'histoire.</div>
-      </div>
-      <div class="edition-card">
-        <div class="card-eyebrow">Art · Van Gogh</div>
-        <div class="card-title">La Nuit Étoilée — une nuit qui respire</div>
-        <div class="card-body">Peint depuis un asile en 1889. Les spirales n'existent pas dans le ciel réel — elles existent dans son esprit.</div>
-      </div>
-      <div class="edition-card">
-        <div class="card-eyebrow">Musique · Queen</div>
-        <div class="card-title">Bohemian Rhapsody — trop longue, trop bizarre</div>
-        <div class="card-body">Les producteurs refusaient de la diffuser en 1975. Elle est devenue l'une des chansons les plus célèbres de l'histoire.</div>
-      </div>
-      <div class="edition-card">
-        <div class="card-eyebrow">Le vivant</div>
-        <div class="card-title">La pieuvre a neuf cerveaux</div>
-        <div class="card-body">Trois cœurs. Du sang bleu. Un cerveau central et un par tentacule. Chaque bras pense en partie seul.</div>
-      </div>
-      <div class="edition-card">
-        <div class="card-eyebrow">Idée du jour · Danemark</div>
-        <div class="card-title">Hygge — l'art des moments simples</div>
-        <div class="card-body">Ce mot intraduisible désigne l'art de créer de la chaleur dans les petits instants. Le Danemark est l'un des pays les plus heureux du monde.</div>
-      </div>
+    <div class="cards-grid" id="cards-grid">
+      <div class="edition-card" style="grid-column:1/-1;text-align:center;color:#718096;font-size:14px;padding:2rem;">Chargement de l'édition du jour...</div>
     </div>
     <div class="edition-cta-row">
       <a href="#newsletter" class="btn-primary">Lire l'édition complète</a>
       <span class="edition-cta-text">+ Quiz, score, badges et citations</span>
     </div>
-    <div class="score-preview">
-      <div class="score-preview-num">1 287</div>
+    <div class="score-preview" id="edition-meta" style="display:none;">
+      <div class="score-preview-num" id="edition-pays-flag">🌍</div>
       <div class="score-preview-info">
-        <div class="score-preview-level">🔍 Explorateur — niveau 12</div>
-        <div class="score-preview-sub">213 points pour devenir Voyageur</div>
+        <div class="score-preview-level" id="edition-pays-nom">Chargement...</div>
+        <div class="score-preview-sub" id="edition-perso-nom"></div>
       </div>
       <div class="prog-bar">
-        <div class="prog-label">Progression vers le niveau suivant</div>
-        <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+        <div class="prog-label">Idée du jour</div>
+        <div class="score-preview-level" id="edition-idee" style="font-size:14px;color:var(--sand);margin-top:4px;"></div>
       </div>
     </div>
   </div>
@@ -378,6 +348,57 @@ footer { background: var(--ink); padding: 3rem 2rem; text-align: center; }
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 4000);
   }
+
+  // Charger l'édition du jour depuis Supabase
+  async function loadTodayEdition() {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/editions?select=*&order=created_at.desc&limit=1`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+      });
+      const data = await res.json();
+      if (!data || !data.length) {
+        document.getElementById('cards-grid').innerHTML = '<div class="edition-card" style="grid-column:1/-1;text-align:center;color:#718096;font-size:14px;padding:2rem;">La prochaine édition arrive demain à 7h !</div>';
+        return;
+      }
+      const edition = data[0];
+      const c = edition.contenu;
+
+      // Mettre à jour le badge date
+      document.getElementById('edition-date-badge').textContent = edition.date;
+
+      // Mettre à jour les cartes
+      const cards = [
+        { eyebrow: '🌍 Le monde', flag: c.pays?.flag, title: `${c.pays?.nom} — ${c.pays?.titre}`, body: c.pays?.intro },
+        { eyebrow: '👤 Destin extraordinaire', title: `${c.personnalite?.nom} — ${c.personnalite?.titre}`, body: c.personnalite?.histoire },
+        { eyebrow: `🎨 Art · ${c.art?.artiste}`, title: c.art?.oeuvre, body: c.art?.description },
+        { eyebrow: `🎵 Musique · ${c.musique?.artiste}`, title: `${c.musique?.titre} (${c.musique?.annee})`, body: c.musique?.anecdote },
+        { eyebrow: `🦁 Le vivant · ${c.vivant?.animal}`, title: c.vivant?.animal, body: c.vivant?.fait1 + ' ' + (c.vivant?.fait2 || '') },
+        { eyebrow: '🧠 Idée du jour', title: c.idee?.mot, body: c.idee?.definition },
+      ].filter(card => card.title);
+
+      document.getElementById('cards-grid').innerHTML = cards.map(card => `
+        <div class="edition-card">
+          ${card.flag ? `<div class="card-flag">${card.flag}</div>` : ''}
+          <div class="card-eyebrow">${card.eyebrow || ''}</div>
+          <div class="card-title">${card.title || ''}</div>
+          <div class="card-body">${card.body || ''}</div>
+        </div>
+      `).join('');
+
+      // Mettre à jour le meta bloc
+      const meta = document.getElementById('edition-meta');
+      meta.style.display = 'flex';
+      document.getElementById('edition-pays-flag').textContent = c.pays?.flag || '🌍';
+      document.getElementById('edition-pays-nom').textContent = c.pays?.nom || '';
+      document.getElementById('edition-perso-nom').textContent = c.personnalite?.nom || '';
+      document.getElementById('edition-idee').textContent = `${c.idee?.mot || ''} — ${c.idee?.definition || ''}`;
+
+    } catch(e) {
+      console.error('Erreur chargement édition:', e);
+    }
+  }
+
+  loadTodayEdition();
 
   document.getElementById('email-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') subscribe();
