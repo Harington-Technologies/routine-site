@@ -346,8 +346,20 @@ footer { background: var(--ink); padding: 3rem 2rem; text-align: center; }
         showToast('Bienvenue dans Routine ! À demain matin. ✓');
         getCount();
       } else if (res.status === 409) {
-        status.textContent = 'Cette adresse est déjà inscrite — à demain !';
+        const reactivate = await fetch(`${SUPABASE_URL}/rest/v1/subscribers?email=eq.${encodeURIComponent(email)}`, {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ active: true })
+        });
+        status.textContent = '\u2713 Bon retour ! Vous recevrez \u00e0 nouveau Routine d\u00e8s demain.';
         status.className = 'form-status success';
+        document.getElementById('email-input').value = '';
+        showToast('Bon retour parmi nous ! \u2713');
       } else {
         throw new Error('Erreur serveur');
       }
