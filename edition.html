@@ -3,144 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Routine — Édition</title>
+<title>Culti — Édition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --ink: #0D1B2A; --jade: #1D9E75; --jade-light: #9FE1CB; --jade-dark: #0F6E56; --sand: #F0ECE0; --sand-dark: #DDD8CC; --slate: #4A5568; --slate-light: #718096; --white: #FFFFFF; --off-white: #F8F7F4; }
-body { font-family: 'Inter', sans-serif; color: var(--ink); background: var(--off-white); }
-nav { background: rgba(13,27,42,0.96); backdrop-filter: blur(8px); padding: 1.25rem 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--sand); text-decoration: none; }
-.nav-logo span { color: var(--jade); }
-.nav-back { font-size: 13px; color: rgba(240,236,224,0.55); text-decoration: none; }
-.nav-back:hover { color: var(--jade-light); }
-.cover { background: var(--ink); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
-.cover-orb { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(29,158,117,0.15) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; }
-.cover-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--jade); margin-bottom: 1rem; }
-.cover-flag { font-size: 64px; margin-bottom: 1rem; }
-.cover-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 52px); color: var(--sand); line-height: 1.1; margin-bottom: 0.5rem; }
-.cover-sub { font-size: 15px; color: rgba(240,236,224,0.5); margin-bottom: 0.5rem; }
-.cover-date { font-size: 12px; color: var(--jade); letter-spacing: 0.08em; }
-.main { max-width: 700px; margin: 0 auto; padding: 3rem 2rem; }
-.section { margin-bottom: 2.5rem; }
-.section-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--jade); font-weight: 500; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 0.5px solid var(--sand-dark); }
-.section-title { font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1.2; margin-bottom: 0.5rem; color: var(--ink); }
-.section-sub { font-size: 13px; color: var(--slate-light); margin-bottom: 1rem; font-style: italic; }
-.body-text { font-size: 15px; line-height: 1.8; color: var(--ink); margin-bottom: 1rem; }
-.stat-card { background: var(--ink); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.25rem 0; display: flex; align-items: center; gap: 1rem; }
-.stat-big { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--jade); flex-shrink: 0; }
-.stat-text { font-size: 13px; color: rgba(240,236,224,0.6); line-height: 1.5; }
-.pull-quote { border-left: 3px solid var(--jade); padding: 0.75rem 1.25rem; margin: 1.25rem 0; font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--ink); line-height: 1.5; border-radius: 0; }
-.lesson-box { border: 0.5px solid var(--sand-dark); border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; font-size: 14px; line-height: 1.6; background: var(--white); }
-.lesson-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate-light); font-weight: 500; margin-bottom: 6px; }
-.defi-box { background: #E1F5EE; border-radius: 8px; padding: 1rem 1.25rem; font-size: 14px; color: #085041; margin: 1rem 0; }
-.dark-box { background: var(--ink); border-radius: 8px; padding: 1.25rem; margin: 1.25rem 0; }
-.dark-box-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--jade); margin-bottom: 8px; font-weight: 500; }
-.dark-box-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--sand); margin-bottom: 8px; }
-.dark-box-body { font-size: 13px; color: rgba(240,236,224,0.65); line-height: 1.7; }
-.dark-box-sub { font-size: 12px; color: var(--jade); font-style: italic; margin-top: 6px; }
-.citation-block { border-left: 2px solid var(--sand-dark); padding: 1rem 1.25rem; margin: 1.25rem 0; font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--slate); }
-.citation-attr { font-family: 'Inter', sans-serif; font-size: 12px; font-style: normal; color: var(--slate-light); margin-top: 8px; display: block; letter-spacing: 0.06em; }
-.citation-modern { font-family: 'Inter', sans-serif; font-size: 13px; font-style: normal; color: var(--slate); margin-top: 8px; }
-.yt-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--jade-dark); border: 1px solid var(--jade-light); border-radius: 20px; padding: 4px 12px; text-decoration: none; margin-top: 8px; }
-.yt-link:hover { background: #E1F5EE; }
-.divider { border: none; border-top: 0.5px solid var(--sand-dark); margin: 2.5rem 0; }
+:root {
+  --ink: #1A1A2E; --white: #FFFFFF; --sand: #FFF8F0;
+  --coral: #FF6B6B; --teal: #4ECDC4; --yellow: #FFE66D;
+  --slate: #4A5568; --slate-light: #718096;
+  --radius: 16px; --radius-sm: 10px;
+}
+body { font-family: 'Nunito', sans-serif; color: var(--ink); background: #FFF8F0; }
+nav { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 2px solid #FFE5D0; padding: 1rem 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.nav-logo span { color: var(--coral); }
+.nav-back { font-size: 13px; color: #4A5568; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+.nav-back:hover { color: var(--coral); }
+
+/* COVER */
+.cover { position: relative; height: 400px; overflow: hidden; }
+.cover-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cover-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,26,46,0.1) 0%, rgba(26,26,46,0.75) 100%); }
+.cover-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem; }
+.cover-label { display: inline-block; background: var(--coral); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 14px; border-radius: 50px; margin-bottom: 0.75rem; }
+.cover-flag { font-size: 48px; display: block; margin-bottom: 0.5rem; }
+.cover-title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 4vw, 40px); color: var(--white); line-height: 1.15; margin-bottom: 0.5rem; }
+.cover-date { font-size: 13px; color: rgba(255,255,255,0.55); }
+
+/* MAIN */
+.main { max-width: 720px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+/* SECTION BLOCKS */
+.block { background: var(--white); border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; position: relative; overflow: hidden; }
+.block-accent { position: absolute; top: 0; left: 0; bottom: 0; width: 5px; border-radius: 4px 0 0 4px; }
+.accent-coral { background: var(--coral); }
+.accent-teal { background: var(--teal); }
+.accent-yellow { background: var(--yellow); }
+.accent-purple { background: #A78BFA; }
+.accent-green { background: #34D399; }
+.accent-orange { background: #FB923C; }
+.accent-pink { background: #F472B6; }
+
+.block-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate-light); font-weight: 600; margin-bottom: 0.75rem; }
+.block-title { font-family: 'Playfair Display', serif; font-size: 24px; line-height: 1.2; margin-bottom: 0.5rem; color: var(--ink); }
+.block-sub { font-size: 13px; color: var(--slate-light); margin-bottom: 1rem; font-style: italic; }
+.block-body { font-size: 15px; line-height: 1.85; color: var(--slate); margin-bottom: 1rem; }
+.block-img { width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 1rem; display: block; }
+
+.stat-pill { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--white); border-radius: 50px; padding: 0.65rem 1.25rem; margin: 0.75rem 0; }
+.stat-pill-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--teal); }
+.stat-pill-text { font-size: 13px; color: rgba(255,255,255,0.65); }
+
+.pull-quote { border-left: 4px solid var(--coral); padding: 0.75rem 1.25rem; margin: 1rem 0; font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--ink); line-height: 1.5; border-radius: 0; }
+
+.lesson-box { background: #FFF8F0; border: 2px solid #FFE5D0; border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin: 1rem 0; font-size: 14px; line-height: 1.6; color: var(--slate); }
+.lesson-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral); font-weight: 700; margin-bottom: 6px; }
+
+.defi-box { background: #E0F7F6; border: 2px solid #A8E6E3; border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin: 1rem 0; font-size: 14px; line-height: 1.6; color: #0E7490; }
+.defi-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin-bottom: 6px; }
+
+.dark-block { background: #1A1A2E; border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; }
+.dark-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); font-weight: 600; margin-bottom: 8px; }
+.dark-title { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--white); margin-bottom: 8px; }
+.dark-body { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+.dark-accent { font-size: 13px; color: var(--teal); font-style: italic; margin-top: 8px; }
+
+.yt-btn { display: inline-flex; align-items: center; gap: 8px; background: #FF0000; color: var(--white); border-radius: 50px; padding: 8px 16px; font-size: 13px; font-weight: 600; text-decoration: none; margin-top: 10px; transition: opacity 0.2s; }
+.yt-btn:hover { opacity: 0.85; }
+
+.citation-block { background: #FFF8F0; border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; text-align: center; }
+.citation-quote { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: var(--ink); line-height: 1.5; margin-bottom: 0.75rem; }
+.citation-attr { font-size: 13px; color: var(--coral); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.citation-modern { font-size: 14px; color: var(--slate); font-style: italic; }
+
+/* ENIGME */
+.enigme-block { background: var(--yellow); border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; text-align: center; }
+.enigme-emoji { font-size: 36px; margin-bottom: 0.75rem; }
+.enigme-q { font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.5; }
+.enigme-btn { background: var(--ink); color: var(--white); border: none; padding: 0.65rem 1.5rem; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Nunito', sans-serif; transition: transform 0.15s; }
+.enigme-btn:hover { transform: scale(1.04); }
+.enigme-rep { font-size: 16px; color: var(--ink); margin-top: 1rem; font-weight: 600; display: none; }
+
 /* QUIZ */
-.quiz-section { background: var(--white); border: 0.5px solid var(--sand-dark); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
-.quiz-q-num { font-size: 11px; color: var(--slate-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
-.quiz-q { font-size: 15px; font-weight: 500; margin-bottom: 0.75rem; }
-.quiz-opts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
-.quiz-opt { background: var(--off-white); border: 0.5px solid var(--sand-dark); border-radius: 8px; padding: 0.65rem 1rem; font-size: 14px; cursor: pointer; text-align: left; color: var(--ink); font-family: 'Inter', sans-serif; transition: all 0.15s; }
-.quiz-opt:hover { background: #E1F5EE; border-color: var(--jade-light); }
-.quiz-opt.correct { background: #E1F5EE; border-color: var(--jade); color: var(--jade-dark); }
-.quiz-opt.wrong { background: #FCEBEB; border-color: #F09595; color: #A32D2D; }
-.quiz-feedback { font-size: 13px; color: var(--slate); margin-bottom: 8px; display: none; }
-.quiz-next { background: var(--ink); color: var(--sand); border: none; padding: 0.6rem 1.25rem; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: 'Inter', sans-serif; display: none; }
-.quiz-next:hover { background: var(--jade-dark); }
-.quiz-nav { display: flex; align-items: center; justify-content: space-between; }
-.quiz-score-live { font-size: 13px; color: var(--slate-light); }
-.result-box { text-align: center; padding: 2rem; display: none; }
-.result-num { font-family: 'Playfair Display', serif; font-size: 52px; color: var(--jade); }
-.result-label { font-size: 16px; color: var(--slate); margin-bottom: 1rem; }
+.quiz-block { background: var(--white); border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; border: 2px solid #FFE5D0; }
+.quiz-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+.quiz-title { font-size: 16px; font-weight: 700; color: var(--ink); }
+.quiz-badge { background: var(--coral); color: var(--white); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 50px; }
+.quiz-prog-wrap { margin-bottom: 1.5rem; }
+.quiz-prog-track { background: #FFE5D0; border-radius: 6px; height: 6px; }
+.quiz-prog-fill { background: var(--coral); height: 100%; border-radius: 6px; transition: width 0.4s ease; }
+.q-num { font-size: 11px; color: var(--slate-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.q-text { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 1rem; line-height: 1.4; }
+.q-opts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
+.q-opt { background: var(--sand); border: 2px solid #FFE5D0; border-radius: var(--radius-sm); padding: 0.75rem 1rem; font-size: 14px; cursor: pointer; text-align: left; color: var(--ink); font-family: 'Nunito', sans-serif; transition: all 0.15s; font-weight: 500; }
+.q-opt:hover { background: #FFE5D0; border-color: var(--coral); }
+.q-opt.correct { background: #DCFCE7; border-color: #34D399; color: #065F46; }
+.q-opt.wrong { background: #FEE2E2; border-color: #F87171; color: #991B1B; }
+.q-feedback { font-size: 13px; color: var(--slate); margin-bottom: 10px; display: none; padding: 0.65rem 1rem; background: var(--sand); border-radius: var(--radius-sm); }
+.q-nav { display: flex; align-items: center; justify-content: space-between; }
+.q-score { font-size: 14px; color: var(--slate-light); font-weight: 500; }
+.q-next { background: var(--coral); color: var(--white); border: none; padding: 0.65rem 1.5rem; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Nunito', sans-serif; display: none; transition: transform 0.15s; }
+.q-next:hover { transform: scale(1.04); }
+.result-box { text-align: center; padding: 1.5rem; display: none; }
+.result-emoji { font-size: 56px; margin-bottom: 0.75rem; }
+.result-num { font-family: 'Playfair Display', serif; font-size: 52px; color: var(--coral); line-height: 1; }
+.result-label { font-size: 16px; color: var(--slate); margin: 0.5rem 0 1rem; }
 .badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 1rem 0; }
-.badge { border: 0.5px solid var(--sand-dark); border-radius: 8px; padding: 6px 14px; font-size: 12px; display: flex; align-items: center; gap: 6px; }
-.badge.earned { border-color: var(--jade); color: var(--jade-dark); background: #E1F5EE; }
-.enigme-box { background: var(--off-white); border: 0.5px solid var(--sand-dark); border-radius: 8px; padding: 1.25rem; text-align: center; margin-bottom: 2rem; }
-.enigme-q { font-family: 'Playfair Display', serif; font-size: 17px; font-style: italic; color: var(--ink); margin-bottom: 1rem; }
-.enigme-toggle { background: var(--ink); color: var(--sand); border: none; padding: 0.5rem 1.25rem; border-radius: 6px; font-size: 13px; cursor: pointer; font-family: 'Inter', sans-serif; }
-.enigme-rep { font-size: 14px; color: var(--jade-dark); margin-top: 0.75rem; display: none; font-weight: 500; }
-.nav-bottom { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; border-top: 0.5px solid var(--sand-dark); flex-wrap: wrap; gap: 1rem; }
-.btn-archives { background: var(--ink); color: var(--sand); text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-size: 14px; font-weight: 500; }
-.btn-subscribe { background: var(--jade); color: var(--white); text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-size: 14px; font-weight: 500; }
-.loading-state { text-align: center; padding: 6rem 2rem; color: var(--slate-light); }
-@media (max-width: 640px) { nav { padding: 1rem 1.5rem; } .main { padding: 2rem 1rem; } }
+.badge { border: 2px solid #FFE5D0; border-radius: var(--radius-sm); padding: 6px 14px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; background: var(--sand); }
+.badge.earned { border-color: var(--teal); color: #0E7490; background: #E0F7F6; }
+
+/* NAV BOTTOM */
+.nav-bottom { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; border-top: 2px solid #FFE5D0; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+.btn-ink { background: #FF6B6B; color: white; text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 14px; font-weight: 600; transition: opacity 0.2s; }
+.btn-ink:hover { opacity: 0.85; }
+.btn-coral { background: var(--coral); color: var(--white); text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 14px; font-weight: 600; transition: transform 0.15s; }
+.btn-coral:hover { transform: scale(1.04); }
+
+.loading-state { text-align: center; padding: 6rem 2rem; color: var(--slate-light); font-size: 15px; }
+@media (max-width: 640px) { nav { padding: 1rem 1.5rem; } .main { padding: 1.5rem 1rem 3rem; } .cover { height: 300px; } .cover-content { padding: 1.5rem; } }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">Routine<span>.</span></a>
+  <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:10px;"><div style="width:36px;height:36px;border-radius:10px;background:#FF6B6B;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:white;flex-shrink:0;">C</div><span style="font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#1A1A2E;letter-spacing:-0.02em;">culti</span></a>
   <a href="archives.html" class="nav-back">← Archives</a>
 </nav>
 
-<div id="loading-state" class="loading-state">Chargement de l'édition...</div>
+<div id="loading-state" class="loading-state">☀️ Chargement de l'édition...</div>
 
 <div id="content" style="display:none;">
+
   <div class="cover" id="cover">
-    <div class="cover-orb"></div>
-    <div class="cover-label">Édition du jour</div>
-    <div class="cover-flag" id="cover-flag">🌍</div>
-    <h1 class="cover-title" id="cover-title"></h1>
-    <div class="cover-sub" id="cover-sub"></div>
-    <div class="cover-date" id="cover-date"></div>
+    <img class="cover-img" id="cover-img" src="" alt="Édition du jour">
+    <div class="cover-overlay"></div>
+    <div class="cover-content">
+      <span class="cover-label">Édition du jour</span>
+      <span class="cover-flag" id="cover-flag">🌍</span>
+      <h1 class="cover-title" id="cover-title"></h1>
+      <div class="cover-date" id="cover-date"></div>
+    </div>
   </div>
 
   <main class="main">
-    <div class="section" id="section-pays"></div>
-    <hr class="divider">
-    <div class="section" id="section-perso"></div>
-    <hr class="divider">
-    <div class="section" id="section-art"></div>
-    <hr class="divider">
-    <div class="section" id="section-musique"></div>
-    <hr class="divider">
-    <div class="section" id="section-idee"></div>
-    <hr class="divider">
-    <div class="section" id="section-vivant"></div>
-    <hr class="divider">
-    <div class="section" id="section-citation"></div>
-    <hr class="divider">
 
-    <div class="enigme-box">
-      <div class="enigme-q" id="enigme-q"></div>
-      <button class="enigme-toggle" onclick="revealEnigme()">Voir la réponse</button>
-      <div class="enigme-rep" id="enigme-rep"></div>
+    <div class="block" id="block-pays">
+      <div class="block-accent accent-coral"></div>
     </div>
 
-    <div class="quiz-section" id="quiz-section">
+    <div class="block" id="block-perso">
+      <div class="block-accent accent-teal"></div>
+    </div>
+
+    <div class="block" id="block-art">
+      <div class="block-accent accent-purple"></div>
+    </div>
+
+    <div class="block" id="block-musique">
+      <div class="block-accent accent-yellow"></div>
+    </div>
+
+    <div class="block" id="block-livre" style="display:none;">
+      <div class="block-accent accent-green"></div>
+    </div>
+
+    <div class="dark-block" id="block-idee"></div>
+
+    <div class="block" id="block-vivant">
+      <div class="block-accent accent-orange"></div>
+    </div>
+
+    <div class="citation-block" id="block-citation"></div>
+
+    <div class="enigme-block" id="block-enigme"></div>
+
+    <div class="quiz-block" id="quiz-block">
+      <div class="quiz-header">
+        <div class="quiz-title">🎯 Quiz du jour</div>
+        <div class="quiz-badge" id="quiz-badge">5 questions</div>
+      </div>
+      <div class="quiz-prog-wrap">
+        <div class="quiz-prog-track"><div class="quiz-prog-fill" id="quiz-prog" style="width:0%"></div></div>
+      </div>
       <div id="quiz-display">
-        <div class="quiz-q-num" id="q-num">Question 1 sur 5</div>
-        <div class="quiz-q" id="q-text"></div>
-        <div class="quiz-opts" id="q-opts"></div>
-        <div class="quiz-feedback" id="q-feedback"></div>
-        <div class="quiz-nav">
-          <div class="quiz-score-live" id="q-score">0 / 5</div>
-          <button class="quiz-next" id="q-next" onclick="nextQ()">Suivant →</button>
+        <div class="q-num" id="q-num">Question 1 sur 5</div>
+        <div class="q-text" id="q-text"></div>
+        <div class="q-opts" id="q-opts"></div>
+        <div class="q-feedback" id="q-feedback"></div>
+        <div class="q-nav">
+          <div class="q-score" id="q-score">0 / 5</div>
+          <button class="q-next" id="q-next" onclick="nextQ()">Suivant →</button>
         </div>
       </div>
       <div class="result-box" id="quiz-result">
+        <div class="result-emoji" id="res-emoji">🎉</div>
         <div class="result-num" id="res-num"></div>
         <div class="result-label" id="res-label"></div>
         <div class="badges" id="res-badges"></div>
-        <p style="font-size:13px;color:var(--slate-light);margin-top:1rem;">Points ajoutés à votre score Routine !</p>
+        <p style="font-size:13px;color:var(--slate-light);margin-top:1rem;">Points ajoutés à votre score Culti !</p>
       </div>
     </div>
 
     <div class="nav-bottom">
-      <a href="archives.html" class="btn-archives">← Toutes les éditions</a>
-      <a href="/#newsletter" class="btn-subscribe">S'abonner gratuitement</a>
+      <a href="archives.html" class="btn-ink">← Toutes les éditions</a>
+      <a href="/#newsletter" class="btn-coral">S'abonner gratuitement ☀️</a>
     </div>
+
   </main>
 </div>
 
@@ -148,81 +217,121 @@ nav { background: rgba(13,27,42,0.96); backdrop-filter: blur(8px); padding: 1.25
 const SUPABASE_URL = 'https://zuahstlswkprzdmflekg.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1YWhzdGxzd2twcnpkbWZsZWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDU2MjMsImV4cCI6MjA5NzAyMTYyM30.-F0WRbiprAa-Zt1ih1QdsQzuuqVW2froK6Ddfvrqoik';
 
-let quizData = [], cur = 0, correct = 0, answered = false;
+const COVER_IMGS = {
+  'Mongolie': 'https://images.unsplash.com/photo-1513415431634-79a9a41bcb23?w=1200&q=80',
+  'Norvège': 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=80',
+  'Japon': 'https://images.unsplash.com/photo-1480796927426-f609979314bd?w=1200&q=80',
+  'Brésil': 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1200&q=80',
+  'Inde': 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200&q=80',
+  'Islande': 'https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=1200&q=80',
+  'Pérou': 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1200&q=80',
+  'Grèce': 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1200&q=80',
+  'Kenya': 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=80',
+  'Maroc': 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80',
+  'Chine': 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1200&q=80',
+  'Argentine': 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=1200&q=80',
+  'Égypte': 'https://images.unsplash.com/photo-1539650116574-75c0c6d73e6e?w=1200&q=80',
+  'Colombie': 'https://images.unsplash.com/photo-1555636222-cae831e670b3?w=1200&q=80',
+};
+const DEFAULT_IMG = 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=80';
 
-function h(str) { return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function h(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+let quizData=[], cur=0, correct=0, answered=false;
 
 async function loadEdition() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
-  let url = id
+  const url = id
     ? `${SUPABASE_URL}/rest/v1/editions?id=eq.${id}&select=*`
     : `${SUPABASE_URL}/rest/v1/editions?select=*&order=created_at.desc&limit=1`;
 
   const res = await fetch(url, { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } });
   const data = await res.json();
-  if (!data || !data.length) { document.getElementById('loading-state').textContent = 'Édition introuvable.'; return; }
+  if (!data || !data.length) { document.getElementById('loading-state').innerHTML = '😕 Édition introuvable.<br><a href="archives.html">← Archives</a>'; return; }
 
-  const ed = data[0];
-  const c = ed.contenu;
-  document.title = `Routine · ${ed.date} · ${ed.pays_nom}`;
+  const ed = data[0]; const c = ed.contenu;
+  document.title = `Culti · ${ed.date} · ${c.pays?.nom}`;
 
+  // Cover
+  const img = COVER_IMGS[c.pays?.nom] || DEFAULT_IMG;
+  document.getElementById('cover-img').src = img;
   document.getElementById('cover-flag').textContent = c.pays?.flag || '🌍';
   document.getElementById('cover-title').textContent = `${c.pays?.nom} — ${c.pays?.titre}`;
-  document.getElementById('cover-sub').textContent = c.pays?.intro || '';
   document.getElementById('cover-date').textContent = ed.date;
 
-  document.getElementById('section-pays').innerHTML = `
-    <div class="section-eyebrow">🌍 Le monde</div>
-    <div class="section-title">${h(c.pays?.nom)} — ${h(c.pays?.titre)}</div>
-    <div class="body-text">${h(c.pays?.intro)}</div>
-    <div class="stat-card"><div class="stat-big">${h(c.pays?.chiffre)}</div><div class="stat-text">${h(c.pays?.chiffre_label)}</div></div>
+  // Pays
+  document.getElementById('block-pays').innerHTML = `
+    <div class="block-accent accent-coral"></div>
+    <div class="block-eyebrow">🌍 Le monde</div>
+    <div class="block-title">${h(c.pays?.nom)} — ${h(c.pays?.titre)}</div>
+    <img src="${img}" class="block-img" alt="${h(c.pays?.nom)}" loading="lazy">
+    <div class="block-body">${h(c.pays?.intro)}</div>
+    <div class="stat-pill"><span class="stat-pill-num">${h(c.pays?.chiffre)}</span><span class="stat-pill-text">${h(c.pays?.chiffre_label)}</span></div>
     <div class="pull-quote">${h(c.pays?.lecon)}</div>`;
 
-  document.getElementById('section-perso').innerHTML = `
-    <div class="section-eyebrow">👤 Destin extraordinaire</div>
-    <div class="section-title">${h(c.personnalite?.nom)}</div>
-    <div class="section-sub">${h(c.personnalite?.epoque)} · ${h(c.personnalite?.titre)}</div>
-    <div class="body-text">${h(c.personnalite?.histoire)}</div>
-    <div class="lesson-box"><div class="lesson-label">Leçon</div>${h(c.personnalite?.lecon)}</div>`;
+  // Personnalité
+  document.getElementById('block-perso').innerHTML = `
+    <div class="block-accent accent-teal"></div>
+    <div class="block-eyebrow">👤 Destin extraordinaire</div>
+    <div class="block-title">${h(c.personnalite?.nom)}</div>
+    <div class="block-sub">${h(c.personnalite?.epoque)} · ${h(c.personnalite?.titre)}</div>
+    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=700&q=80" class="block-img" alt="Portrait" loading="lazy">
+    <div class="block-body">${h(c.personnalite?.histoire)}</div>
+    <div class="lesson-box"><div class="lesson-label">💡 Leçon</div>${h(c.personnalite?.lecon)}</div>`;
 
-  document.getElementById('section-art').innerHTML = `
-    <div class="section-eyebrow">🎨 Art · ${h(c.art?.artiste)}</div>
-    <div class="section-title">${h(c.art?.oeuvre)} <span style="font-size:16px;color:var(--slate-light);font-family:Inter,sans-serif;">(${h(c.art?.annee)})</span></div>
-    <div class="body-text">${h(c.art?.description)}</div>
-    <div class="defi-box">✦ ${h(c.art?.defi)}</div>`;
+  // Art
+  document.getElementById('block-art').innerHTML = `
+    <div class="block-accent accent-purple"></div>
+    <div class="block-eyebrow">🎨 Art · ${h(c.art?.artiste)}</div>
+    <div class="block-title">${h(c.art?.oeuvre)} <span style="font-size:15px;color:var(--slate-light);font-family:Inter,sans-serif;">(${h(c.art?.annee)})</span></div>
+    <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=700&q=80" class="block-img" alt="Art" loading="lazy">
+    <div class="block-body">${h(c.art?.description)}</div>
+    <div class="defi-box"><div class="defi-label">✦ Défi</div>${h(c.art?.defi)}</div>`;
 
-  document.getElementById('section-musique').innerHTML = `
-    <div class="section-eyebrow">🎵 Musique · ${h(c.musique?.artiste)}</div>
-    <div class="section-title">${h(c.musique?.titre)} <span style="font-size:16px;color:var(--slate-light);font-family:Inter,sans-serif;">(${h(c.musique?.annee)})</span></div>
-    <div class="body-text">${h(c.musique?.anecdote)}</div>
-    <div class="lesson-box"><div class="lesson-label">Ce que ça nous apprend</div>${h(c.musique?.lecon)}</div>
-    <a class="yt-link" href="https://www.youtube.com/results?search_query=${encodeURIComponent(c.musique?.youtube_search || '')}" target="_blank">▶ Écouter sur YouTube</a>`;
+  // Musique
+  const ytUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(c.musique?.youtube_search||'')}`;
+  document.getElementById('block-musique').innerHTML = `
+    <div class="block-accent accent-yellow"></div>
+    <div class="block-eyebrow">🎵 Musique · ${h(c.musique?.artiste)}</div>
+    <div class="block-title">${h(c.musique?.titre)} <span style="font-size:15px;color:var(--slate-light);font-family:Inter,sans-serif;">(${h(c.musique?.annee)})</span></div>
+    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=700&q=80" class="block-img" alt="Musique" loading="lazy">
+    <div class="block-body">${h(c.musique?.anecdote)}</div>
+    <div class="lesson-box"><div class="lesson-label">💡 Ce que ça nous apprend</div>${h(c.musique?.lecon)}</div>
+    <a class="yt-btn" href="${ytUrl}" target="_blank">▶ Écouter sur YouTube</a>`;
 
-  document.getElementById('section-idee').innerHTML = `
-    <div class="dark-box">
-      <div class="dark-box-label">🧠 Idée du jour · ${h(c.idee?.langue)}</div>
-      <div class="dark-box-title">${h(c.idee?.mot)}</div>
-      <div class="dark-box-body">${h(c.idee?.definition)}</div>
-      <div class="dark-box-sub">${h(c.idee?.pourquoi)}</div>
-    </div>`;
+  // Idée
+  document.getElementById('block-idee').innerHTML = `
+    <div class="dark-eyebrow">🧠 Idée du jour · ${h(c.idee?.langue)}</div>
+    <div class="dark-title">${h(c.idee?.mot)}</div>
+    <div class="dark-body">${h(c.idee?.definition)}</div>
+    <div class="dark-accent">${h(c.idee?.pourquoi)}</div>`;
 
-  document.getElementById('section-vivant').innerHTML = `
-    <div class="section-eyebrow">🦁 Le vivant · ${h(c.vivant?.animal)}</div>
-    <div class="body-text">${h(c.vivant?.fait1)}</div>
-    <div class="body-text">${h(c.vivant?.fait2)}</div>
-    <div class="lesson-box"><div class="lesson-label">Ce que ça nous apprend</div>${h(c.vivant?.lecon)}</div>`;
+  // Vivant
+  document.getElementById('block-vivant').innerHTML = `
+    <div class="block-accent accent-orange"></div>
+    <div class="block-eyebrow">🦁 Le vivant · ${h(c.vivant?.animal)}</div>
+    <div class="block-title">${h(c.vivant?.animal)}</div>
+    <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=700&q=80" class="block-img" alt="Nature" loading="lazy">
+    <div class="block-body">${h(c.vivant?.fait1)}</div>
+    <div class="block-body">${h(c.vivant?.fait2)}</div>
+    <div class="lesson-box"><div class="lesson-label">💡 Ce que ça nous apprend</div>${h(c.vivant?.lecon)}</div>`;
 
-  document.getElementById('section-citation').innerHTML = `
-    <div class="citation-block">
-      ${h(c.citation?.texte)}
-      <span class="citation-attr">— ${h(c.citation?.auteur)}</span>
-      <div class="citation-modern">${h(c.citation?.traduction)}</div>
-    </div>`;
+  // Citation
+  document.getElementById('block-citation').innerHTML = `
+    <div style="font-size:36px;margin-bottom:0.75rem;">💬</div>
+    <div class="citation-quote">"${h(c.citation?.texte)}"</div>
+    <div class="citation-attr">— ${h(c.citation?.auteur)}</div>
+    <div class="citation-modern">${h(c.citation?.traduction)}</div>`;
 
-  document.getElementById('enigme-q').textContent = `🧩 ${c.enigme?.question || ''}`;
-  document.getElementById('enigme-rep').textContent = `Réponse : ${c.enigme?.reponse || ''}`;
+  // Énigme
+  document.getElementById('block-enigme').innerHTML = `
+    <div class="enigme-emoji">🧩</div>
+    <div class="enigme-q">${h(c.enigme?.question)}</div>
+    <button class="enigme-btn" onclick="revealEnigme(this, '${h(c.enigme?.reponse)}')">Voir la réponse</button>
+    <div class="enigme-rep" id="enigme-rep"></div>`;
 
+  // Quiz
   quizData = c.quiz || [];
   renderQ();
 
@@ -233,6 +342,8 @@ async function loadEdition() {
 function renderQ() {
   if (!quizData.length) return;
   const q = quizData[cur];
+  const pct = Math.round((cur / quizData.length) * 100);
+  document.getElementById('quiz-prog').style.width = pct + '%';
   document.getElementById('q-num').textContent = `Question ${cur + 1} sur ${quizData.length}`;
   document.getElementById('q-text').textContent = q.question;
   document.getElementById('q-feedback').style.display = 'none';
@@ -240,7 +351,7 @@ function renderQ() {
   answered = false;
   const opts = document.getElementById('q-opts');
   opts.innerHTML = q.options.map((o, i) =>
-    `<button class="quiz-opt" onclick="answer(${i})">${o}</button>`
+    `<button class="q-opt" onclick="answer(${i})">${o}</button>`
   ).join('');
   document.getElementById('q-score').textContent = `${correct} / ${quizData.length}`;
 }
@@ -249,13 +360,16 @@ function answer(idx) {
   if (answered) return;
   answered = true;
   const q = quizData[cur];
-  document.querySelectorAll('.quiz-opt').forEach((b, i) => {
+  document.querySelectorAll('.q-opt').forEach((b, i) => {
     b.disabled = true;
     if (i === q.correct) b.classList.add('correct');
     else if (i === idx && idx !== q.correct) b.classList.add('wrong');
   });
   if (idx === q.correct) correct++;
   document.getElementById('q-score').textContent = `${correct} / ${quizData.length}`;
+  const fb = document.getElementById('q-feedback');
+  fb.textContent = idx === q.correct ? '✓ Bonne réponse !' : `✗ La bonne réponse était : ${q.options[q.correct]}`;
+  fb.style.display = 'block';
   document.getElementById('q-next').style.display = 'block';
 }
 
@@ -266,23 +380,27 @@ function nextQ() {
 }
 
 function showResult() {
+  document.getElementById('quiz-prog').style.width = '100%';
   document.getElementById('quiz-display').style.display = 'none';
   const res = document.getElementById('quiz-result');
   res.style.display = 'block';
+  const emojis = ['😅','😅','🙂','👍','🌟','🏆'];
+  document.getElementById('res-emoji').textContent = emojis[correct] || '🎉';
   document.getElementById('res-num').textContent = `${correct} / ${quizData.length}`;
-  const labels = ['', '', 'Continuez !', 'Pas mal !', 'Très bien !', 'Parfait !'];
+  const labels = ['Encore un effort !','Pas mal !','Pas mal !','Bien joué !','Très bien !','Parfait !'];
   document.getElementById('res-label').textContent = labels[correct] || 'Bien joué !';
   const pts = correct * 20 + (correct === quizData.length ? 20 : 0) + 50;
   document.getElementById('res-badges').innerHTML = [
-    { label: 'Routine lue', pts: 50, ok: true },
-    { label: 'Quiz réussi', pts: correct * 20, ok: correct >= 4 },
+    { label: 'Culti lue', pts: 50, ok: true },
+    { label: 'Quiz maîtrisé', pts: correct * 20, ok: correct >= 4 },
     { label: 'Score parfait', pts: 20, ok: correct === quizData.length }
-  ].map(b => `<div class="badge ${b.ok ? 'earned' : ''}">${b.ok ? '★' : '○'} ${b.label} +${b.pts}pts</div>`).join('');
+  ].map(b => `<div class="badge ${b.ok ? 'earned' : ''}">${b.ok ? '⭐' : '○'} ${b.label} +${b.pts}pts</div>`).join('');
 }
 
-function revealEnigme() {
+function revealEnigme(btn, rep) {
+  document.getElementById('enigme-rep').textContent = '✓ ' + rep;
   document.getElementById('enigme-rep').style.display = 'block';
-  event.target.style.display = 'none';
+  btn.style.display = 'none';
 }
 
 loadEdition();

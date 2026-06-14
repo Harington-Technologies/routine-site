@@ -3,28 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Archives — Routine</title>
+<title>Archives — Culti</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --ink: #0D1B2A; --jade: #1D9E75; --jade-light: #9FE1CB; --jade-dark: #0F6E56; --sand: #F0ECE0; --sand-dark: #DDD8CC; --slate: #4A5568; --slate-light: #718096; --white: #FFFFFF; --off-white: #F8F7F4; }
-body { font-family: 'Inter', sans-serif; color: var(--ink); background: var(--off-white); }
-nav { background: rgba(13,27,42,0.96); backdrop-filter: blur(8px); padding: 1.25rem 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+body { font-family: 'Nunito', sans-serif; color: var(--ink); background: #FFF8F0; }
+nav { background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); padding: 1.25rem 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
 .nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--sand); text-decoration: none; }
 .nav-logo span { color: var(--jade); }
-.nav-back { font-size: 13px; color: rgba(240,236,224,0.55); text-decoration: none; }
+.nav-back { font-size: 13px; color: #718096; text-decoration: none; }
 .nav-back:hover { color: var(--jade-light); }
-.hero { background: var(--ink); padding: 4rem 2rem 3rem; text-align: center; }
+.hero { background: #FFF8F0; padding: 4rem 2rem 3rem; text-align: center; border-bottom: 2px solid #FFE5D0; }
 .hero-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--jade); margin-bottom: 1rem; }
-.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px); color: var(--sand); margin-bottom: 0.75rem; }
-.hero-sub { font-size: 15px; color: rgba(240,236,224,0.5); }
+.hero-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: clamp(32px, 5vw, 52px); color: #1A1A2E; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+.hero-sub { font-size: 15px; color: #718096; }
 .main { max-width: 960px; margin: 0 auto; padding: 3rem 2rem; }
 .filters { display: flex; gap: 8px; margin-bottom: 2rem; flex-wrap: wrap; }
-.filter-btn { font-size: 13px; padding: 6px 16px; border-radius: 20px; border: 1px solid var(--sand-dark); background: var(--white); color: var(--slate); cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif; }
-.filter-btn:hover, .filter-btn.active { background: var(--ink); color: var(--sand); border-color: var(--ink); }
+.filter-btn { font-size: 13px; padding: 6px 16px; border-radius: 20px; border: 1px solid var(--sand-dark); background: var(--white); color: var(--slate); cursor: pointer; transition: all 0.15s; font-family: 'Nunito', sans-serif; }
+.filter-btn:hover, .filter-btn.active { background: #FF6B6B; color: white; border-color: #FF6B6B; }
 .search-row { margin-bottom: 2rem; }
-.search-input { width: 100%; padding: 0.75rem 1.25rem; border: 1.5px solid var(--sand-dark); border-radius: 8px; font-size: 15px; font-family: 'Inter', sans-serif; background: var(--white); color: var(--ink); outline: none; transition: border-color 0.2s; }
+.search-input { width: 100%; padding: 0.75rem 1.25rem; border: 1.5px solid var(--sand-dark); border-radius: 8px; font-size: 15px; font-family: 'Nunito', sans-serif; background: var(--white); color: var(--ink); outline: none; transition: border-color 0.2s; }
 .search-input:focus { border-color: var(--jade); }
 .editions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
 .edition-card { background: var(--white); border: 1px solid var(--sand-dark); border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: border-color 0.2s, transform 0.15s; text-decoration: none; display: block; color: inherit; }
@@ -34,13 +34,13 @@ nav { background: rgba(13,27,42,0.96); backdrop-filter: blur(8px); padding: 1.25
 .card-pays { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--ink); margin-bottom: 4px; }
 .card-perso { font-size: 13px; color: var(--slate-light); margin-bottom: 0.75rem; }
 .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.card-tag { font-size: 11px; background: var(--off-white); border: 1px solid var(--sand-dark); border-radius: 20px; padding: 3px 10px; color: var(--slate); }
+.card-tag { font-size: 11px; background: #FFF8F0; border: 1px solid var(--sand-dark); border-radius: 20px; padding: 3px 10px; color: var(--slate); }
 .empty { text-align: center; padding: 4rem 2rem; color: var(--slate-light); }
 .empty-icon { font-size: 40px; margin-bottom: 1rem; }
 .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
 .stat { background: var(--white); border: 1px solid var(--sand-dark); border-radius: 8px; padding: 1rem; text-align: center; }
-.stat-num { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--jade); }
-.stat-label { font-size: 12px; color: var(--slate-light); margin-top: 4px; }
+.stat-num { font-family: 'Nunito', sans-serif; font-size: 28px; font-weight: 900; color: #FF6B6B; }
+.stat-label { font-size: 12px; color: #718096; margin-top: 4px; }
 .loading { text-align: center; padding: 3rem; color: var(--slate-light); font-size: 14px; }
 @media (max-width: 640px) { nav { padding: 1rem 1.5rem; } .main { padding: 2rem 1rem; } }
 </style>
@@ -48,14 +48,14 @@ nav { background: rgba(13,27,42,0.96); backdrop-filter: blur(8px); padding: 1.25
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">Routine<span>.</span></a>
+  <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:10px;"><div style="width:36px;height:36px;border-radius:10px;background:#FF6B6B;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:white;flex-shrink:0;">C</div><span style="font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#1A1A2E;letter-spacing:-0.02em;">culti</span></a>
   <a href="/" class="nav-back">← Retour au site</a>
 </nav>
 
 <div class="hero">
   <div class="hero-label">Toutes les éditions</div>
   <h1 class="hero-title">Archives</h1>
-  <p class="hero-sub">Retrouvez chaque édition publiée depuis le début de Routine.</p>
+  <p class="hero-sub">Retrouvez chaque édition publiée depuis le début de Culti.</p>
 </div>
 
 <main class="main">

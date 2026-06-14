@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Désabonnement — Routine</title>
+<title>Désabonnement — Culti</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --ink: #0D1B2A; --jade: #1D9E75; --jade-dark: #0F6E56; --sand: #F0ECE0; --sand-dark: #DDD8CC; --slate: #4A5568; --white: #FFFFFF; --off-white: #F8F7F4; }
-body { font-family: 'Inter', sans-serif; color: var(--ink); background: var(--off-white); min-height: 100vh; display: flex; flex-direction: column; }
-nav { background: rgba(13,27,42,0.96); padding: 1.25rem 3rem; display: flex; align-items: center; justify-content: space-between; }
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--sand); text-decoration: none; }
+body { font-family: 'Nunito', sans-serif; color: var(--ink); background: #FFF8F0; min-height: 100vh; display: flex; flex-direction: column; }
+nav { background: rgba(255,255,255,0.95); padding: 1.25rem 3rem; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 22px; font-weight: 700; color: #1A1A2E; text-decoration: none; }
 .nav-logo span { color: var(--jade); }
 .main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem; }
-.card { background: var(--white); border: 1px solid var(--sand-dark); border-radius: 16px; padding: 3rem 2.5rem; max-width: 480px; width: 100%; text-align: center; }
+.card { background: white; border: 2px solid #FFE5D0; border-radius: 16px; padding: 3rem 2.5rem; max-width: 480px; width: 100%; text-align: center; }
 .card-icon { font-size: 48px; margin-bottom: 1.5rem; }
 .card-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--ink); margin-bottom: 0.75rem; }
 .card-sub { font-size: 15px; color: var(--slate); line-height: 1.7; margin-bottom: 2rem; }
-.email-display { background: var(--off-white); border: 1px solid var(--sand-dark); border-radius: 8px; padding: 0.75rem 1.25rem; font-size: 15px; color: var(--ink); margin-bottom: 2rem; font-weight: 500; }
-.btn-unsub { background: #c0392b; color: var(--white); border: none; padding: 0.85rem 2rem; border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; width: 100%; margin-bottom: 0.75rem; }
-.btn-unsub:hover { background: #a93226; }
-.btn-back { background: transparent; color: var(--slate); border: 1px solid var(--sand-dark); padding: 0.85rem 2rem; border-radius: 8px; font-size: 15px; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; width: 100%; text-decoration: none; display: block; }
+.email-display { background: #FFF8F0; border: 1px solid var(--sand-dark); border-radius: 8px; padding: 0.75rem 1.25rem; font-size: 15px; color: var(--ink); margin-bottom: 2rem; font-weight: 500; }
+.btn-unsub { background: #FF6B6B; color: var(--white); border: none; padding: 0.85rem 2rem; border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'Nunito', sans-serif; transition: background 0.2s; width: 100%; margin-bottom: 0.75rem; }
+.btn-unsub:hover { background: #ff5252; }
+.btn-back { background: transparent; color: #4A5568; border: 1px solid var(--sand-dark); padding: 0.85rem 2rem; border-radius: 8px; font-size: 15px; cursor: pointer; font-family: 'Nunito', sans-serif; transition: all 0.2s; width: 100%; text-decoration: none; display: block; }
 .btn-back:hover { border-color: var(--jade); color: var(--jade-dark); }
 .status { font-size: 14px; min-height: 20px; margin-bottom: 1rem; font-weight: 500; }
 .status.success { color: var(--jade-dark); }
@@ -35,7 +35,7 @@ nav { background: rgba(13,27,42,0.96); padding: 1.25rem 3rem; display: flex; ali
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">Routine<span>.</span></a>
+  <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:10px;"><div style="width:36px;height:36px;border-radius:10px;background:#FF6B6B;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:white;flex-shrink:0;">C</div><span style="font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#1A1A2E;letter-spacing:-0.02em;">culti</span></a>
 </nav>
 
 <main class="main">
@@ -53,8 +53,8 @@ nav { background: rgba(13,27,42,0.96); padding: 1.25rem 3rem; display: flex; ali
     <div class="done-state" id="done-state">
       <div class="done-icon">✅</div>
       <div class="done-title">Désabonnement confirmé.</div>
-      <div class="done-sub">Vous ne recevrez plus d'emails de Routine. Si vous changez d'avis, vous pouvez vous réinscrire à tout moment sur notre site.</div>
-      <a href="/" class="btn-back" style="display:block;text-align:center;padding:0.85rem 2rem;border-radius:8px;border:1px solid #DDD8CC;color:#4A5568;text-decoration:none;">Retourner sur Routine</a>
+      <div class="done-sub">Vous ne recevrez plus d'emails de Culti. Si vous changez d'avis, vous pouvez vous réinscrire à tout moment sur notre site.</div>
+      <a href="/" class="btn-back" style="display:block;text-align:center;padding:0.85rem 2rem;border-radius:8px;border:1px solid #DDD8CC;color:#4A5568;text-decoration:none;">Retourner sur Culti</a>
     </div>
   </div>
 </main>

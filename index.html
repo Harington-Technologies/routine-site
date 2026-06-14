@@ -3,139 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Routine — 10 minutes pour voyager plus loin</title>
+<title>Culti — 10 minutes pour voyager plus loin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --ink: #0D1B2A; --jade: #1D9E75; --jade-light: #9FE1CB;
-  --jade-dark: #0F6E56; --sand: #F0ECE0; --sand-dark: #DDD8CC;
-  --slate: #4A5568; --slate-light: #718096; --white: #FFFFFF; --off-white: #F8F7F4;
+  --ink: #1A1A2E; --white: #FFFFFF;
+  --coral: #FF6B6B; --teal: #4ECDC4; --yellow: #FFE66D; --purple: #A8DADC;
+  --green: #56CFE1; --orange: #FF9F1C; --pink: #FF6B9D;
+  --sand: #FFF8F0; --sand2: #FFF0E0;
+  --slate: #4A5568; --slate-light: #718096;
+  --radius: 16px; --radius-sm: 10px;
 }
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; color: var(--ink); background: var(--white); line-height: 1.7; overflow-x: hidden; }
+body { font-family: 'Nunito', sans-serif; color: var(--ink); background: var(--sand); overflow-x: hidden; }
 
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.25rem 3rem;
-  background: rgba(13,27,42,0.96); backdrop-filter: blur(8px);
-}
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--sand); }
-.nav-logo span { color: var(--jade); }
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 2px solid #FFE5D0; padding: 1rem 3rem; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.nav-logo span { color: var(--coral); }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a { font-size: 13px; color: rgba(240,236,224,0.65); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
-.nav-links a:hover { color: var(--jade-light); }
-.nav-cta { background: var(--jade); color: var(--white); border: none; padding: 0.5rem 1.25rem; border-radius: 4px; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; transition: background 0.2s; }
-.nav-cta:hover { background: var(--jade-dark); }
+.nav-links a { font-size: 13px; color: var(--slate); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--coral); }
+.nav-cta { background: var(--coral); color: var(--white); border: none; padding: 0.6rem 1.5rem; border-radius: 50px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: transform 0.15s, background 0.2s; }
+.nav-cta:hover { background: #ff5252; transform: scale(1.04); }
 
-#hero {
-  min-height: 100vh; background: var(--ink);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden;
-}
-.hero-orb { position: absolute; border-radius: 50%; pointer-events: none; }
-.orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(29,158,117,0.18) 0%, transparent 70%); top: -100px; right: -100px; }
-.orb-2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(29,158,117,0.10) 0%, transparent 70%); bottom: 50px; left: -50px; }
-.hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--jade); font-weight: 500; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(52px, 8vw, 88px); font-weight: 700; line-height: 0.95; color: var(--sand); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
-.hero-title em { font-style: italic; color: var(--jade); }
-.hero-sub { font-size: 18px; color: rgba(240,236,224,0.6); max-width: 520px; line-height: 1.6; margin-bottom: 3rem; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+/* HERO */
+#hero { min-height: 100vh; background: #FFF8F0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 5rem; position: relative; overflow: hidden; }
+.hero-bg-circle { position: absolute; border-radius: 50%; pointer-events: none; }
+.hc1 { width: 600px; height: 600px; background: rgba(255,107,107,0.18); top: -200px; right: -200px; }
+.hc2 { width: 400px; height: 400px; background: rgba(78,205,196,0.15); bottom: -100px; left: -100px; }
+.hc3 { width: 200px; height: 200px; background: rgba(255,230,109,0.3); top: 30%; left: 5%; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: #FFE5D0; border: 1px solid #FFCFB3; border-radius: 50px; padding: 6px 16px; font-size: 12px; color: var(--coral); font-weight: 500; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+.hero-badge-dot { width: 6px; height: 6px; background: var(--coral); border-radius: 50%; animation: pulse 2s infinite; }
+.hero-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: clamp(48px, 7vw, 80px); letter-spacing: -0.02em; line-height: 1.05; color: #1A1A2E !important; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+.hero-title .accent-coral { color: var(--coral); }
+.hero-title .accent-teal { color: #2BB5AC; }
+.hero-title .accent-yellow { color: #FF9F1C; }
+.hero-sub { font-size: 18px; color: #718096; max-width: 540px; line-height: 1.7; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
 .hero-cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
-.btn-primary { background: var(--jade); color: var(--white); border: none; padding: 0.85rem 2rem; border-radius: 4px; font-size: 15px; font-weight: 500; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
-.btn-primary:hover { background: var(--jade-dark); transform: translateY(-1px); }
-.btn-ghost { background: transparent; color: var(--sand); border: 1px solid rgba(240,236,224,0.3); padding: 0.85rem 2rem; border-radius: 4px; font-size: 15px; cursor: pointer; text-decoration: none; transition: border-color 0.2s, transform 0.15s; display: inline-block; }
-.btn-ghost:hover { border-color: var(--jade-light); color: var(--jade-light); transform: translateY(-1px); }
+.btn-coral { background: var(--coral); color: var(--white); border: none; padding: 1rem 2rem; border-radius: 50px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; display: inline-block; }
+.btn-coral:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,107,107,0.4); }
+.btn-outline { background: white; color: #1A1A2E; border: 2px solid #FFE5D0; padding: 1rem 2rem; border-radius: 50px; font-size: 15px; cursor: pointer; text-decoration: none; transition: border-color 0.2s, transform 0.15s; display: inline-block; }
+.btn-outline:hover { border-color: var(--coral); color: var(--coral); transform: translateY(-2px); }
 .hero-counter { margin-top: 4rem; opacity: 0; animation: fadeUp 0.8s 1s forwards; }
-.counter-num { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--jade); line-height: 1; }
-.counter-label { font-size: 12px; color: rgba(240,236,224,0.45); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px; }
-.counter-dot { display: inline-block; width: 6px; height: 6px; background: var(--jade); border-radius: 50%; margin-right: 6px; vertical-align: middle; animation: pulse 2s infinite; }
-.hero-date { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); font-size: 11px; color: rgba(240,236,224,0.3); letter-spacing: 0.1em; }
+.counter-num { font-family: 'Nunito', sans-serif; font-size: 44px; font-weight: 900; color: var(--coral); }
+.counter-label { font-size: 12px; color: #718096; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px; }
+.hero-rubriques { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 3rem; max-width: 600px; opacity: 0; animation: fadeUp 0.8s 1.1s forwards; }
+.rubrique-pill { background: white; border: 2px solid #FFE5D0; border-radius: 50px; padding: 5px 14px; font-size: 12px; color: #4A5568; font-weight: 600; }
+.hero-date { position: absolute; bottom: 2rem; font-size: 11px; color: #B0B7C3; letter-spacing: 0.1em; }
 
-#concept { background: var(--off-white); padding: 7rem 2rem; }
-.section-inner { max-width: 960px; margin: 0 auto; }
-.section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--jade); font-weight: 500; margin-bottom: 1rem; }
-.section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; margin-bottom: 1rem; color: var(--ink); }
+/* CONCEPT */
+#concept { background: var(--white); padding: 7rem 2rem; }
+.section-inner { max-width: 1000px; margin: 0 auto; }
+.section-tag { display: inline-block; background: var(--yellow); color: var(--ink); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 14px; border-radius: 50px; margin-bottom: 1rem; }
+.section-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: clamp(30px, 4vw, 46px); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem; color: var(--ink); }
 .section-body { font-size: 17px; color: var(--slate); max-width: 560px; line-height: 1.8; margin-bottom: 3.5rem; }
-.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5px; background: var(--sand-dark); border: 1.5px solid var(--sand-dark); border-radius: 8px; overflow: hidden; }
-.pillar { background: var(--white); padding: 2rem 1.75rem; }
-.pillar-icon { font-size: 24px; margin-bottom: 1rem; }
+.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+.pillar { border-radius: var(--radius); padding: 2rem; position: relative; overflow: hidden; }
+.pillar-1 { background: linear-gradient(135deg, #FFF0E0, #FFE5D0); border: 2px solid #FFDAB9; }
+.pillar-2 { background: linear-gradient(135deg, #E0F7F6, #C8F0EE); border: 2px solid #A8E6E3; }
+.pillar-3 { background: linear-gradient(135deg, #FFF8E1, #FFF3CC); border: 2px solid #FFE97A; }
+.pillar-icon { font-size: 36px; margin-bottom: 1rem; }
 .pillar-title { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 0.5rem; color: var(--ink); }
-.pillar-body { font-size: 14px; color: var(--slate-light); line-height: 1.7; }
-.rubriques { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 3rem; }
-.rubrique-tag { font-size: 12px; border: 1px solid var(--sand-dark); border-radius: 20px; padding: 5px 14px; color: var(--slate); background: var(--white); }
+.pillar-body { font-size: 14px; color: var(--slate); line-height: 1.7; }
 
-#edition { background: var(--ink); padding: 7rem 2rem; position: relative; overflow: hidden; }
-#edition::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: rgba(29,158,117,0.3); }
-.edition-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
-.edition-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 42px); color: var(--sand); line-height: 1.1; }
-.edition-date-badge { font-size: 12px; color: var(--jade); border: 1px solid rgba(29,158,117,0.4); border-radius: 20px; padding: 4px 14px; letter-spacing: 0.05em; }
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
-.edition-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(240,236,224,0.1); border-radius: 8px; padding: 1.5rem; transition: border-color 0.2s, background 0.2s; }
-.edition-card:hover { border-color: rgba(29,158,117,0.4); background: rgba(29,158,117,0.06); }
-.card-eyebrow { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--jade); margin-bottom: 0.75rem; font-weight: 500; }
-.card-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--sand); margin-bottom: 0.5rem; line-height: 1.3; }
-.card-body { font-size: 13px; color: rgba(240,236,224,0.5); line-height: 1.6; }
-.card-flag { font-size: 20px; margin-bottom: 0.5rem; }
+/* ÉDITION DU JOUR */
+#edition { background: var(--sand); padding: 7rem 2rem; }
+.edition-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
+.edition-date-badge { background: var(--teal); color: var(--white); font-size: 12px; font-weight: 600; border-radius: 50px; padding: 5px 16px; letter-spacing: 0.04em; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+.edition-card { border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; display: block; color: inherit; background: var(--white); border: 2px solid transparent; }
+.edition-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+.card-img { width: 100%; height: 160px; object-fit: cover; display: block; background: #eee; }
+.card-img-placeholder { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+.card-c1 { background: linear-gradient(135deg, #FFE5D0, #FFDAB9); }
+.card-c2 { background: linear-gradient(135deg, #E0F7F6, #C8F0EE); }
+.card-c3 { background: linear-gradient(135deg, #F3E8FF, #E9D5FF); }
+.card-c4 { background: linear-gradient(135deg, #FFF8E1, #FFF3CC); }
+.card-c5 { background: linear-gradient(135deg, #FCE4EC, #F8BBD9); }
+.card-c6 { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); }
+.card-body-inner { padding: 1.25rem; }
+.card-eyebrow { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--slate-light); margin-bottom: 6px; font-weight: 600; }
+.card-title { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--ink); margin-bottom: 6px; line-height: 1.3; }
+.card-text { font-size: 13px; color: var(--slate); line-height: 1.6; }
 .edition-cta-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
-.edition-cta-text { font-size: 14px; color: rgba(240,236,224,0.4); }
-.score-preview { background: rgba(255,255,255,0.04); border: 1px solid rgba(240,236,224,0.08); border-radius: 8px; padding: 1.5rem 2rem; margin-top: 3rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-.score-preview-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--jade); flex-shrink: 0; }
-.score-preview-info { flex: 1; min-width: 200px; }
-.score-preview-level { font-size: 14px; color: var(--sand); font-weight: 500; margin-bottom: 6px; }
-.score-preview-sub { font-size: 12px; color: rgba(240,236,224,0.4); }
+.edition-cta-sub { font-size: 14px; color: var(--slate-light); }
+
+/* SCORE */
+.score-preview { background: var(--ink); border-radius: var(--radius); padding: 1.75rem 2rem; margin-top: 2.5rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+.score-preview-num { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700; color: var(--teal); flex-shrink: 0; }
+.score-preview-info { flex: 1; min-width: 180px; }
+.score-preview-level { font-size: 15px; color: var(--white); font-weight: 500; margin-bottom: 4px; }
+.score-preview-sub { font-size: 12px; color: rgba(255,255,255,0.4); }
 .prog-bar { flex: 2; min-width: 160px; }
-.prog-label { font-size: 11px; color: rgba(240,236,224,0.35); margin-bottom: 6px; }
-.prog-track { background: rgba(255,255,255,0.08); border-radius: 3px; height: 4px; overflow: hidden; }
-.prog-fill { background: var(--jade); height: 100%; border-radius: 3px; width: 0%; transition: width 2s ease; }
+.prog-label { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
+.prog-track { background: rgba(255,255,255,0.1); border-radius: 6px; height: 8px; overflow: hidden; }
+.prog-fill { background: linear-gradient(90deg, var(--teal), var(--green)); height: 100%; border-radius: 6px; width: 0%; transition: width 2s ease; }
 
-#newsletter { background: var(--sand); padding: 7rem 2rem; }
-.newsletter-inner { max-width: 640px; margin: 0 auto; text-align: center; }
-.newsletter-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 4vw, 46px); line-height: 1.1; margin-bottom: 1rem; color: var(--ink); }
-.newsletter-title em { font-style: italic; color: var(--jade-dark); }
-.newsletter-sub { font-size: 16px; color: var(--slate); line-height: 1.7; margin-bottom: 2.5rem; }
+/* NEWSLETTER */
+#newsletter { background: #FF6B6B; padding: 7rem 2rem; position: relative; overflow: hidden; }
+.nl-orb1 { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: rgba(255,255,255,0.1); top: -100px; right: -100px; pointer-events: none; }
+.nl-orb2 { position: absolute; width: 300px; height: 300px; border-radius: 50%; background: rgba(255,230,109,0.15); bottom: -50px; left: -50px; pointer-events: none; }
+.newsletter-inner { max-width: 580px; margin: 0 auto; text-align: center; position: relative; }
+.nl-emoji { font-size: 48px; margin-bottom: 1rem; }
+.newsletter-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: clamp(28px, 4vw, 44px); line-height: 1.1; margin-bottom: 1rem; color: white; letter-spacing: -0.02em; }
+.newsletter-title em { font-style: italic; color: #FFE66D; }
+.newsletter-sub { font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 2.5rem; }
 .form-row { display: flex; gap: 8px; max-width: 460px; margin: 0 auto 1rem; }
-.form-row input { flex: 1; padding: 0.85rem 1.25rem; border: 1.5px solid var(--sand-dark); border-radius: 4px; font-size: 15px; font-family: 'Inter', sans-serif; background: var(--white); color: var(--ink); outline: none; transition: border-color 0.2s; }
-.form-row input:focus { border-color: var(--jade); }
-.form-row input::placeholder { color: #999; }
-.form-row button { background: var(--ink); color: var(--sand); border: none; padding: 0.85rem 1.5rem; border-radius: 4px; font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; font-family: 'Inter', sans-serif; transition: background 0.2s; }
-.form-row button:hover { background: var(--jade-dark); }
-.form-note { font-size: 12px; color: var(--slate-light); margin-bottom: 0.5rem; }
-.form-status { font-size: 13px; min-height: 20px; font-weight: 500; }
-.form-status.success { color: var(--jade-dark); }
-.form-status.error { color: #c0392b; }
-.social-proof { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2.5rem; flex-wrap: wrap; }
-.proof-item { font-size: 13px; color: var(--slate); display: flex; align-items: center; gap: 6px; }
-.proof-dot { width: 4px; height: 4px; background: var(--jade-dark); border-radius: 50%; }
+.form-row input { flex: 1; padding: 0.9rem 1.25rem; border: 2px solid rgba(255,255,255,0.4); border-radius: 50px; font-size: 15px; font-family: 'Nunito', sans-serif; background: rgba(255,255,255,0.08); color: var(--white); outline: none; transition: border-color 0.2s; }
+.form-row input:focus { border-color: var(--teal); }
+.form-row input::placeholder { color: #B0B7C3; }
+.form-row button { background: #1A1A2E; color: white; border: none; padding: 0.9rem 1.5rem; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: 'Nunito', sans-serif; transition: transform 0.15s, background 0.2s; }
+.form-row button:hover { background: #2D2D4E; transform: scale(1.04); }
+.form-note { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 0.5rem; }
+.form-status { font-size: 14px; min-height: 20px; font-weight: 500; }
+.form-status.success { color: #FFE66D; font-weight: 700; }
+.form-status.error { color: white; font-weight: 700; }
+.social-proof { display: flex; align-items: center; justify-content: center; gap: 2rem; margin-top: 2.5rem; flex-wrap: wrap; }
+.proof-item { font-size: 13px; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 8px; }
+.proof-dot { width: 6px; height: 6px; background: white; border-radius: 50%; }
 
-footer { background: var(--ink); padding: 3rem 2rem; text-align: center; }
-.footer-logo { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--sand); margin-bottom: 0.5rem; }
-.footer-logo span { color: var(--jade); }
-.footer-tagline { font-size: 13px; color: rgba(240,236,224,0.3); margin-bottom: 2rem; }
+/* FOOTER */
+footer { background: #FFF8F0; padding: 3rem 2rem; text-align: center; border-top: 2px solid #FFE5D0; }
+.footer-logo { font-family: 'Nunito', sans-serif; font-size: 28px; font-weight: 900; color: #1A1A2E; margin-bottom: 0.5rem; }
+.footer-logo span { color: var(--coral); }
+.footer-tagline { font-size: 13px; color: #718096; margin-bottom: 2rem; }
 .footer-links { display: flex; gap: 2rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
-.footer-links a { font-size: 12px; color: rgba(240,236,224,0.35); text-decoration: none; }
-.footer-links a:hover { color: var(--jade-light); }
-.footer-copy { font-size: 11px; color: rgba(240,236,224,0.2); }
+.footer-links a { font-size: 12px; color: #718096; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: #FF6B6B; }
+.footer-copy { font-size: 11px; color: #B0B7C3; }
 
-.toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--jade-dark); color: var(--white); padding: 0.85rem 2rem; border-radius: 4px; font-size: 14px; font-weight: 500; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); z-index: 200; white-space: nowrap; }
+/* TOAST */
+.toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--teal); color: var(--ink); padding: 0.85rem 2rem; border-radius: 50px; font-size: 14px; font-weight: 600; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); z-index: 200; white-space: nowrap; }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-@media (max-width: 640px) {
-  nav { padding: 1rem 1.5rem; }
-  .nav-links { display: none; }
-  .form-row { flex-direction: column; }
-  .score-preview { flex-direction: column; gap: 1rem; }
-}
+@media (max-width: 640px) { nav { padding: 1rem 1.5rem; } .nav-links { display: none; } .form-row { flex-direction: column; } }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">Routine<span>.</span></div>
+  <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:10px;"><div style="width:36px;height:36px;border-radius:10px;background:#FF6B6B;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:white;flex-shrink:0;">C</div><span style="font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#1A1A2E;letter-spacing:-0.02em;">culti</span></a>
   <ul class="nav-links">
     <li><a href="#concept">Le concept</a></li>
     <li><a href="#edition">Édition du jour</a></li>
@@ -146,57 +158,66 @@ footer { background: var(--ink); padding: 3rem 2rem; text-align: center; }
 </nav>
 
 <section id="hero">
-  <div class="hero-orb orb-1"></div>
-  <div class="hero-orb orb-2"></div>
-  <div class="hero-eyebrow">Votre rituel matinal de culture</div>
-  <h1 class="hero-title">Voyagez plus loin<br>que les <em>algorithmes.</em></h1>
-  <p class="hero-sub">Chaque matin, une édition de 10 minutes. Un pays, une personnalité, une œuvre, une idée. Pas de scroll infini. Pas de bruit. Juste l'essentiel, bien raconté.</p>
+  <div class="hero-bg-circle hc1"></div>
+  <div class="hero-bg-circle hc2"></div>
+  <div class="hero-bg-circle hc3"></div>
+
+  <div class="hero-badge"><span class="hero-badge-dot"></span> Votre rituel matinal de culture</div>
+
+  <h1 class="hero-title" style="color:#1A1A2E;">
+    Voyagez. Apprenez.<br><span class="accent-coral">Progressez.</span><br>En <span class="accent-teal">10 minutes.</span>
+  </h1>
+
+  <p class="hero-sub">Chaque matin, une édition qui vous emmène dans un pays, vous présente un génie, vous fait découvrir une œuvre et teste vos connaissances. Sans scroll infini. Sans pub.</p>
+
   <div class="hero-cta-row">
-    <a href="#newsletter" class="btn-primary">Recevoir Routine — gratuit</a>
-    <a href="#edition" class="btn-ghost">Voir l'édition du jour</a>
+    <a href="#newsletter" class="btn-coral">Recevoir Culti — gratuit 🚀</a>
+    <a href="edition.html" class="btn-outline">Voir l'édition du jour →</a>
   </div>
+
   <div class="hero-counter">
-    <div class="counter-num"><span class="counter-dot"></span><span id="live-counter">—</span></div>
-    <div class="counter-label">abonnés dans la communauté Routine</div>
+    <div class="counter-num"><span id="live-counter">—</span></div>
+    <div class="counter-label">lecteurs actifs dans la communauté</div>
   </div>
+
+  <div class="hero-rubriques">
+    <span class="rubrique-pill">🌍 Le monde</span>
+    <span class="rubrique-pill">👤 Destins</span>
+    <span class="rubrique-pill">🎨 Art</span>
+    <span class="rubrique-pill">🎵 Musique</span>
+    <span class="rubrique-pill">📚 Livres</span>
+    <span class="rubrique-pill">🌌 Univers</span>
+    <span class="rubrique-pill">🦁 Vivant</span>
+    <span class="rubrique-pill">🧠 Idées</span>
+    <span class="rubrique-pill">🎯 Quiz</span>
+    <span class="rubrique-pill">🏆 Score</span>
+  </div>
+
   <div class="hero-date">Dimanche 14 juin 2026 · Édition n° 547</div>
 </section>
 
 <section id="concept">
   <div class="section-inner">
-    <div class="section-label">Le concept</div>
+    <div class="section-tag">Le concept</div>
     <h2 class="section-title">Un magazine quotidien,<br>pas un flux d'actualités.</h2>
-    <p class="section-body">Routine est conçu pour les curieux qui manquent de temps — pas d'idées. Chaque édition est construite comme un magazine : une vraie ligne éditoriale, des faits vérifiés, et un fil conducteur qui donne envie de continuer.</p>
+    <p class="section-body">Culti est conçu pour les curieux qui manquent de temps — pas d'idées. Chaque édition est construite comme un magazine : ligne éditoriale, faits vérifiés, fil conducteur.</p>
+
     <div class="pillars">
-      <div class="pillar">
+      <div class="pillar pillar-1">
         <div class="pillar-icon">🌍</div>
         <div class="pillar-title">Voyager sans bouger</div>
-        <div class="pillar-body">Un pays différent chaque jour. Sa géographie, sa culture, ses traditions — racontées en trois paragraphes qui donnent envie d'aller plus loin.</div>
+        <div class="pillar-body">Un pays différent chaque jour — sa géographie, sa culture, ses traditions. Racontées en quelques paragraphes qui donnent envie d'aller plus loin.</div>
       </div>
-      <div class="pillar">
+      <div class="pillar pillar-2">
         <div class="pillar-icon">🧠</div>
-        <div class="pillar-title">Apprendre différemment</div>
-        <div class="pillar-body">Science, art, philosophie, nature. Des rubriques variées qui construisent, semaine après semaine, une culture générale solide et inattendue.</div>
+        <div class="pillar-title">Apprendre autrement</div>
+        <div class="pillar-body">Science, art, philosophie, nature — des rubriques variées qui construisent semaine après semaine une culture générale solide et inattendue.</div>
       </div>
-      <div class="pillar">
+      <div class="pillar pillar-3">
         <div class="pillar-icon">🏆</div>
-        <div class="pillar-title">Progresser et mesurer</div>
-        <div class="pillar-body">Un quiz quotidien, un score personnel, des badges et un passeport culturel qui rendent chaque édition aussi satisfaisante qu'un jeu.</div>
+        <div class="pillar-title">Progresser chaque jour</div>
+        <div class="pillar-body">Quiz quotidien, score personnel, badges et passeport culturel — chaque édition est aussi satisfaisante qu'un jeu bien conçu.</div>
       </div>
-    </div>
-    <div class="rubriques">
-      <span class="rubrique-tag">🌍 Le monde</span>
-      <span class="rubrique-tag">👤 Destin extraordinaire</span>
-      <span class="rubrique-tag">🎨 Art</span>
-      <span class="rubrique-tag">🎵 Musique</span>
-      <span class="rubrique-tag">📚 Livre du jour</span>
-      <span class="rubrique-tag">🌌 Univers</span>
-      <span class="rubrique-tag">🧠 Idée du jour</span>
-      <span class="rubrique-tag">🦁 Le vivant</span>
-      <span class="rubrique-tag">🍰 Saveur du monde</span>
-      <span class="rubrique-tag">💬 Citation</span>
-      <span class="rubrique-tag">🧩 Énigme</span>
-      <span class="rubrique-tag">🎯 Quiz</span>
     </div>
   </div>
 </section>
@@ -204,16 +225,22 @@ footer { background: var(--ink); padding: 3rem 2rem; text-align: center; }
 <section id="edition">
   <div class="section-inner">
     <div class="edition-header">
-      <h2 class="edition-title">Édition du jour</h2>
+      <div>
+        <div class="section-tag">Édition du jour</div>
+        <h2 class="section-title" style="margin-bottom:0;">Au programme ce matin</h2>
+      </div>
       <span class="edition-date-badge" id="edition-date-badge">Chargement...</span>
     </div>
+
     <div class="cards-grid" id="cards-grid">
-      <div class="edition-card" style="grid-column:1/-1;text-align:center;color:#718096;font-size:14px;padding:2rem;">Chargement de l'édition du jour...</div>
+      <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--slate-light);font-size:14px;">Chargement de l'édition...</div>
     </div>
+
     <div class="edition-cta-row">
-      <a href="edition.html" class="btn-primary">Lire l'édition complète</a>
-      <span class="edition-cta-text">+ Quiz, score, badges et citations</span>
+      <a href="edition.html" class="btn-coral">Lire l'édition complète 📖</a>
+      <span class="edition-cta-sub">+ Quiz, score, badges et anecdotes</span>
     </div>
+
     <div class="score-preview" id="edition-meta" style="display:none;">
       <div class="score-preview-num" id="edition-pays-flag">🌍</div>
       <div class="score-preview-info">
@@ -221,195 +248,176 @@ footer { background: var(--ink); padding: 3rem 2rem; text-align: center; }
         <div class="score-preview-sub" id="edition-perso-nom"></div>
       </div>
       <div class="prog-bar">
-        <div class="prog-label">Idée du jour</div>
-        <div class="score-preview-level" id="edition-idee" style="font-size:14px;color:var(--sand);margin-top:4px;"></div>
+        <div class="prog-label">Votre progression aujourd'hui</div>
+        <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <section id="newsletter">
+  <div class="nl-orb1"></div>
+  <div class="nl-orb2"></div>
   <div class="newsletter-inner">
-    <div class="section-label" style="text-align:center;">Rejoindre Routine</div>
+    <div class="nl-emoji">☀️</div>
     <h2 class="newsletter-title">Commencez demain matin.<br><em>10 minutes.</em> C'est tout.</h2>
-    <p class="newsletter-sub">Chaque jour à 7h, votre édition Routine vous attend. Une lecture, un quiz, un score. Gratuit, sans publicité, désabonnement en un clic.</p>
+    <p class="newsletter-sub">Chaque jour à 7h, Culti arrive dans votre boîte mail. Gratuit, sans publicité, désabonnement en un clic.</p>
+
     <div class="form-row">
       <input type="email" id="email-input" placeholder="votre@email.com" autocomplete="email">
-      <button onclick="subscribe()" id="sub-btn">S'abonner →</button>
+      <button onclick="subscribe()">S'abonner →</button>
     </div>
-    <p class="form-note">Gratuit · Sans publicité · Désabonnement en un clic</p>
+    <p class="form-note">Gratuit · Sans pub · Désabonnement en 1 clic</p>
     <p class="form-status" id="form-status"></p>
+
     <div class="social-proof">
       <div class="proof-item"><span class="proof-dot"></span><span id="proof-count">—</span> abonnés actifs</div>
       <div class="proof-item"><span class="proof-dot"></span>547 éditions publiées</div>
-      <div class="proof-item"><span class="proof-dot"></span>Note moyenne : 4,9 / 5</div>
+      <div class="proof-item"><span class="proof-dot"></span>Note 4,9 / 5 ⭐</div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">Routine<span>.</span></div>
+  <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:0.5rem;"><div style="width:44px;height:44px;border-radius:13px;background:#FF6B6B;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:white;">C</div><span style="font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:#1A1A2E;letter-spacing:-0.02em;">culti</span></div>
   <div class="footer-tagline">10 minutes pour voyager plus loin que les algorithmes</div>
   <div class="footer-links">
     <a href="#concept">Le concept</a>
-    <a href="#edition">Édition du jour</a>
-    <a href="#newsletter">S'abonner</a>
+    <a href="edition.html">Édition du jour</a>
     <a href="archives.html">Archives</a>
-    <a href="#">Contact</a>
+    <a href="#newsletter">S'abonner</a>
+    <a href="unsubscribe.html">Se désabonner</a>
   </div>
-  <div class="footer-copy">© 2026 Routine · Tous droits réservés</div>
+  <div class="footer-copy">© 2026 Culti · Tous droits réservés</div>
 </footer>
 
 <div class="toast" id="toast"></div>
 
 <script>
-  const SUPABASE_URL = 'https://zuahstlswkprzdmflekg.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1YWhzdGxzd2twcnpkbWZsZWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDU2MjMsImV4cCI6MjA5NzAyMTYyM30.-F0WRbiprAa-Zt1ih1QdsQzuuqVW2froK6Ddfvrqoik';
+const SUPABASE_URL = 'https://zuahstlswkprzdmflekg.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1YWhzdGxzd2twcnpkbWZsZWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDU2MjMsImV4cCI6MjA5NzAyMTYyM30.-F0WRbiprAa-Zt1ih1QdsQzuuqVW2froK6Ddfvrqoik';
 
-  async function getCount() {
-    try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/subscribers?select=id&active=eq.true`, {
-        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
-      });
-      const data = await res.json();
-      const count = Array.isArray(data) ? data.length : 0;
-      const display = (count + 4800).toLocaleString('fr-FR');
-      document.getElementById('live-counter').textContent = display;
-      document.getElementById('proof-count').textContent = display;
-    } catch(e) {
-      document.getElementById('live-counter').textContent = '4 800+';
-      document.getElementById('proof-count').textContent = '4 800+';
-    }
+const UNSPLASH = {
+  'monde': 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80',
+  'perso': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80',
+  'art': 'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&q=80',
+  'musique': 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&q=80',
+  'vivant': 'https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=600&q=80',
+  'idee': 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80',
+};
+const COLORS = ['card-c1','card-c2','card-c3','card-c4','card-c5','card-c6'];
+const EMOJIS = ['🌍','👤','🎨','🎵','🦁','🧠'];
+
+async function getCount() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/subscribers?select=id&active=eq.true`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    const data = await res.json();
+    const count = (Array.isArray(data) ? data.length : 0) + 4800;
+    document.getElementById('live-counter').textContent = count.toLocaleString('fr-FR');
+    document.getElementById('proof-count').textContent = count.toLocaleString('fr-FR');
+  } catch(e) {
+    document.getElementById('live-counter').textContent = '4 800+';
+    document.getElementById('proof-count').textContent = '4 800+';
   }
+}
 
-  async function subscribe() {
-    const email = document.getElementById('email-input').value.trim();
-    const status = document.getElementById('form-status');
-    const btn = document.getElementById('sub-btn');
+async function loadTodayEdition() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/editions?select=*&order=created_at.desc&limit=1`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    const data = await res.json();
+    if (!data || !data.length) return;
+    const ed = data[0]; const c = ed.contenu;
+    document.getElementById('edition-date-badge').textContent = ed.date;
 
-    if (!email || !email.includes('@')) {
-      status.textContent = 'Veuillez entrer une adresse email valide.';
-      status.className = 'form-status error';
-      return;
-    }
+    const cards = [
+      { eyebrow: '🌍 Le monde', emoji: '🌍', title: `${c.pays?.flag} ${c.pays?.nom} — ${c.pays?.titre}`, text: c.pays?.intro, img: UNSPLASH.monde, color: 0, link: `edition.html?id=${ed.id}` },
+      { eyebrow: '👤 Destin extraordinaire', emoji: '👤', title: `${c.personnalite?.nom}`, text: c.personnalite?.histoire, img: UNSPLASH.perso, color: 1, link: `edition.html?id=${ed.id}` },
+      { eyebrow: `🎨 Art · ${c.art?.artiste}`, emoji: '🎨', title: c.art?.oeuvre, text: c.art?.description, img: UNSPLASH.art, color: 2, link: `edition.html?id=${ed.id}` },
+      { eyebrow: `🎵 Musique · ${c.musique?.artiste}`, emoji: '🎵', title: c.musique?.titre, text: c.musique?.anecdote, img: UNSPLASH.musique, color: 3, link: `edition.html?id=${ed.id}` },
+      { eyebrow: `🦁 Le vivant · ${c.vivant?.animal}`, emoji: '🦁', title: c.vivant?.animal, text: c.vivant?.fait1, img: UNSPLASH.vivant, color: 4, link: `edition.html?id=${ed.id}` },
+      { eyebrow: '🧠 Idée du jour', emoji: '🧠', title: c.idee?.mot, text: c.idee?.definition, img: UNSPLASH.idee, color: 5, link: `edition.html?id=${ed.id}` },
+    ].filter(card => card.title);
 
-    btn.textContent = '...';
-    btn.disabled = true;
-    status.textContent = '';
-
-    try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/subscribers`, {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': `Bearer ${SUPABASE_KEY}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({ email: email })
-      });
-
-      if (res.status === 201) {
-        status.textContent = '✓ Bienvenue ! Votre première édition arrive demain à 7h.';
-        status.className = 'form-status success';
-        document.getElementById('email-input').value = '';
-        showToast('Bienvenue dans Routine ! À demain matin. ✓');
-        getCount();
-      } else if (res.status === 409) {
-        const reactivate = await fetch(`${SUPABASE_URL}/rest/v1/subscribers?email=eq.${encodeURIComponent(email)}`, {
-          method: 'PATCH',
-          headers: {
-            'apikey': SUPABASE_KEY,
-            'Authorization': `Bearer ${SUPABASE_KEY}`,
-            'Content-Type': 'application/json',
-            'Prefer': 'return=minimal'
-          },
-          body: JSON.stringify({ active: true })
-        });
-        status.textContent = '\u2713 Bon retour ! Vous recevrez \u00e0 nouveau Routine d\u00e8s demain.';
-        status.className = 'form-status success';
-        document.getElementById('email-input').value = '';
-        showToast('Bon retour parmi nous ! \u2713');
-      } else {
-        throw new Error('Erreur serveur');
-      }
-    } catch(e) {
-      status.textContent = 'Une erreur est survenue. Réessayez dans un instant.';
-      status.className = 'form-status error';
-    }
-
-    btn.textContent = 'S\'abonner →';
-    btn.disabled = false;
-  }
-
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 4000);
-  }
-
-  // Charger l'édition du jour depuis Supabase
-  async function loadTodayEdition() {
-    try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/editions?select=*&order=created_at.desc&limit=1`, {
-        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
-      });
-      const data = await res.json();
-      if (!data || !data.length) {
-        document.getElementById('cards-grid').innerHTML = '<div class="edition-card" style="grid-column:1/-1;text-align:center;color:#718096;font-size:14px;padding:2rem;">La prochaine édition arrive demain à 7h !</div>';
-        return;
-      }
-      const edition = data[0];
-      const c = edition.contenu;
-
-      // Mettre à jour le badge date
-      document.getElementById('edition-date-badge').textContent = edition.date;
-
-      // Mettre à jour les cartes
-      const cards = [
-        { eyebrow: '🌍 Le monde', flag: c.pays?.flag, title: `${c.pays?.nom} — ${c.pays?.titre}`, body: c.pays?.intro },
-        { eyebrow: '👤 Destin extraordinaire', title: `${c.personnalite?.nom} — ${c.personnalite?.titre}`, body: c.personnalite?.histoire },
-        { eyebrow: `🎨 Art · ${c.art?.artiste}`, title: c.art?.oeuvre, body: c.art?.description },
-        { eyebrow: `🎵 Musique · ${c.musique?.artiste}`, title: `${c.musique?.titre} (${c.musique?.annee})`, body: c.musique?.anecdote },
-        { eyebrow: `🦁 Le vivant · ${c.vivant?.animal}`, title: c.vivant?.animal, body: c.vivant?.fait1 + ' ' + (c.vivant?.fait2 || '') },
-        { eyebrow: '🧠 Idée du jour', title: c.idee?.mot, body: c.idee?.definition },
-      ].filter(card => card.title);
-
-      document.getElementById('cards-grid').innerHTML = cards.map(card => `
-        <div class="edition-card">
-          ${card.flag ? `<div class="card-flag">${card.flag}</div>` : ''}
-          <div class="card-eyebrow">${card.eyebrow || ''}</div>
-          <div class="card-title">${card.title || ''}</div>
-          <div class="card-body">${card.body || ''}</div>
+    document.getElementById('cards-grid').innerHTML = cards.map(card => `
+      <a class="edition-card" href="${card.link}">
+        <img class="card-img" src="${card.img}" alt="${card.eyebrow}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder ${COLORS[card.color]}" style="display:none;">${card.emoji}</div>
+        <div class="card-body-inner">
+          <div class="card-eyebrow">${card.eyebrow}</div>
+          <div class="card-title">${card.title}</div>
+          <div class="card-text">${card.text || ''}</div>
         </div>
-      `).join('');
+      </a>`).join('');
 
-      // Mettre à jour le meta bloc
-      const meta = document.getElementById('edition-meta');
-      meta.style.display = 'flex';
-      document.getElementById('edition-pays-flag').textContent = c.pays?.flag || '🌍';
-      document.getElementById('edition-pays-nom').textContent = c.pays?.nom || '';
-      document.getElementById('edition-perso-nom').textContent = c.personnalite?.nom || '';
-      document.getElementById('edition-idee').textContent = `${c.idee?.mot || ''} — ${c.idee?.definition || ''}`;
+    const meta = document.getElementById('edition-meta');
+    meta.style.display = 'flex';
+    document.getElementById('edition-pays-flag').textContent = c.pays?.flag || '🌍';
+    document.getElementById('edition-pays-nom').textContent = `${c.pays?.nom} · ${c.personnalite?.nom}`;
+    document.getElementById('edition-perso-nom').textContent = c.idee?.mot ? `💡 Idée du jour : ${c.idee.mot}` : '';
+    setTimeout(() => { document.getElementById('prog-fill').style.width = '78%'; }, 400);
+  } catch(e) { console.error(e); }
+}
 
-    } catch(e) {
-      console.error('Erreur chargement édition:', e);
-    }
+async function subscribe() {
+  const email = document.getElementById('email-input').value.trim();
+  const status = document.getElementById('form-status');
+  const btn = document.querySelector('.form-row button');
+  if (!email || !email.includes('@')) {
+    status.textContent = 'Veuillez entrer une adresse email valide.';
+    status.className = 'form-status error';
+    return;
   }
+  btn.textContent = '...'; btn.disabled = true; status.textContent = '';
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/subscribers`, {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ email })
+    });
+    if (res.status === 201) {
+      status.textContent = '✓ Bienvenue ! Votre première édition arrive demain à 7h.';
+      status.className = 'form-status success';
+      document.getElementById('email-input').value = '';
+      showToast('Bienvenue dans Culti ! À demain matin ☀️');
+      getCount();
+    } else if (res.status === 409) {
+      await fetch(`${SUPABASE_URL}/rest/v1/subscribers?email=eq.${encodeURIComponent(email)}`, {
+        method: 'PATCH',
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ active: true })
+      });
+      status.textContent = '✓ Bon retour ! Vous recevrez à nouveau Culti dès demain.';
+      status.className = 'form-status success';
+      document.getElementById('email-input').value = '';
+      showToast('Bon retour parmi nous ! ✓');
+    } else { throw new Error(); }
+  } catch(e) {
+    status.textContent = 'Une erreur est survenue. Réessayez.';
+    status.className = 'form-status error';
+  }
+  btn.textContent = 'S\'abonner →'; btn.disabled = false;
+}
 
-  loadTodayEdition();
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
 
-  document.getElementById('email-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') subscribe();
-  });
+document.getElementById('email-input').addEventListener('keydown', e => { if (e.key === 'Enter') subscribe(); });
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) document.getElementById('prog-fill').style.width = '78%'; });
-  }, { threshold: 0.3 });
-  observer.observe(document.getElementById('prog-fill').parentElement);
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) document.getElementById('prog-fill').style.width = '78%'; });
+}, { threshold: 0.3 });
+const pf = document.getElementById('prog-fill');
+if (pf) { pf.style.width = '0%'; obs.observe(pf.parentElement); }
 
-  getCount();
+getCount();
+loadTodayEdition();
 </script>
 </body>
 </html>
