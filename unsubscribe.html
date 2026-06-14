@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Désabonnement — Routine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --ink: #0D1B2A; --jade: #1D9E75; --jade-dark: #0F6E56; --sand: #F0ECE0; --sand-dark: #DDD8CC; --slate: #4A5568; --white: #FFFFFF; --off-white: #F8F7F4; }
+body { font-family: 'Inter', sans-serif; color: var(--ink); background: var(--off-white); min-height: 100vh; display: flex; flex-direction: column; }
+nav { background: rgba(13,27,42,0.96); padding: 1.25rem 3rem; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--sand); text-decoration: none; }
+.nav-logo span { color: var(--jade); }
+.main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem; }
+.card { background: var(--white); border: 1px solid var(--sand-dark); border-radius: 16px; padding: 3rem 2.5rem; max-width: 480px; width: 100%; text-align: center; }
+.card-icon { font-size: 48px; margin-bottom: 1.5rem; }
+.card-title { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--ink); margin-bottom: 0.75rem; }
+.card-sub { font-size: 15px; color: var(--slate); line-height: 1.7; margin-bottom: 2rem; }
+.email-display { background: var(--off-white); border: 1px solid var(--sand-dark); border-radius: 8px; padding: 0.75rem 1.25rem; font-size: 15px; color: var(--ink); margin-bottom: 2rem; font-weight: 500; }
+.btn-unsub { background: #c0392b; color: var(--white); border: none; padding: 0.85rem 2rem; border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; width: 100%; margin-bottom: 0.75rem; }
+.btn-unsub:hover { background: #a93226; }
+.btn-back { background: transparent; color: var(--slate); border: 1px solid var(--sand-dark); padding: 0.85rem 2rem; border-radius: 8px; font-size: 15px; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; width: 100%; text-decoration: none; display: block; }
+.btn-back:hover { border-color: var(--jade); color: var(--jade-dark); }
+.status { font-size: 14px; min-height: 20px; margin-bottom: 1rem; font-weight: 500; }
+.status.success { color: var(--jade-dark); }
+.status.error { color: #c0392b; }
+.done-state { display: none; }
+.done-icon { font-size: 48px; margin-bottom: 1rem; }
+.done-title { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--ink); margin-bottom: 0.75rem; }
+.done-sub { font-size: 14px; color: var(--slate); line-height: 1.7; margin-bottom: 1.5rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Routine<span>.</span></a>
+</nav>
+
+<main class="main">
+  <div class="card">
+    <div id="unsub-state">
+      <div class="card-icon">😔</div>
+      <h1 class="card-title">Vous souhaitez partir ?</h1>
+      <p class="card-sub">Nous sommes désolés de vous voir partir. Votre désabonnement sera immédiat et définitif.</p>
+      <div class="email-display" id="email-display">Chargement...</div>
+      <div class="status" id="status"></div>
+      <button class="btn-unsub" onclick="unsubscribe()" id="unsub-btn">Me désabonner</button>
+      <a href="/" class="btn-back">← Rester abonné</a>
+    </div>
+
+    <div class="done-state" id="done-state">
+      <div class="done-icon">✅</div>
+      <div class="done-title">Désabonnement confirmé.</div>
+      <div class="done-sub">Vous ne recevrez plus d'emails de Routine. Si vous changez d'avis, vous pouvez vous réinscrire à tout moment sur notre site.</div>
+      <a href="/" class="btn-back" style="display:block;text-align:center;padding:0.85rem 2rem;border-radius:8px;border:1px solid #DDD8CC;color:#4A5568;text-decoration:none;">Retourner sur Routine</a>
+    </div>
+  </div>
+</main>
+
+<script>
+const SUPABASE_URL = 'https://zuahstlswkprzdmflekg.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1YWhzdGxzd2twcnpkbWZsZWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDU2MjMsImV4cCI6MjA5NzAyMTYyM30.-F0WRbiprAa-Zt1ih1QdsQzuuqVW2froK6Ddfvrqoik';
+
+const params = new URLSearchParams(window.location.search);
+const email = params.get('email') || '';
+
+document.getElementById('email-display').textContent = email || 'Email non trouvé';
+
+if (!email) {
+  document.getElementById('unsub-btn').disabled = true;
+  document.getElementById('status').textContent = 'Lien invalide — aucun email détecté.';
+  document.getElementById('status').className = 'status error';
+}
+
+async function unsubscribe() {
+  if (!email) return;
+  const btn = document.getElementById('unsub-btn');
+  const status = document.getElementById('status');
+  btn.textContent = '...';
+  btn.disabled = true;
+  status.textContent = '';
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/subscribers?email=eq.${encodeURIComponent(email)}`, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ active: false })
+    });
+
+    if (res.ok || res.status === 204) {
+      document.getElementById('unsub-state').style.display = 'none';
+      document.getElementById('done-state').style.display = 'block';
+    } else {
+      throw new Error('Erreur serveur');
+    }
+  } catch(e) {
+    status.textContent = 'Une erreur est survenue. Réessayez.';
+    status.className = 'status error';
+    btn.textContent = 'Me désabonner';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
