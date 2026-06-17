@@ -256,56 +256,49 @@ nav { background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bo
 const SB_URL = 'https://zuahstlswkprzdmflekg.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1YWhzdGxzd2twcnpkbWZsZWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDU2MjMsImV4cCI6MjA5NzAyMTYyM30.-F0WRbiprAa-Zt1ih1QdsQzuuqVW2froK6Ddfvrqoik';
 
-// Photos via Unsplash Source API — fiable par mot-clé
-function getImg(keyword, w=1400, h=500) {
-  const k = encodeURIComponent(keyword);
-  return `https://source.unsplash.com/featured/${w}x${h}/?${k}`;
+// Photos Picsum — 100% fiables, seeds fixes par thème
+const COVERS = {
+  'Mongolie':  'https://picsum.photos/seed/mongolia/1400/500',
+  'Norvège':   'https://picsum.photos/seed/norway/1400/500',
+  'Japon':     'https://picsum.photos/seed/japan/1400/500',
+  'Brésil':    'https://picsum.photos/seed/brazil/1400/500',
+  'Inde':      'https://picsum.photos/seed/india/1400/500',
+  'Islande':   'https://picsum.photos/seed/iceland/1400/500',
+  'Pérou':     'https://picsum.photos/seed/peru/1400/500',
+  'Grèce':     'https://picsum.photos/seed/greece/1400/500',
+  'Kenya':     'https://picsum.photos/seed/kenya/1400/500',
+  'Maroc':     'https://picsum.photos/seed/morocco/1400/500',
+  'Chine':     'https://picsum.photos/seed/china/1400/500',
+  'Argentine': 'https://picsum.photos/seed/argentina/1400/500',
+  'Égypte':    'https://picsum.photos/seed/egypt/1400/500',
+  'Colombie':  'https://picsum.photos/seed/colombia/1400/500',
+  'Portugal':  'https://picsum.photos/seed/portugal/1400/500',
+  'Mexique':   'https://picsum.photos/seed/mexico/1400/500',
+  'Thaïlande': 'https://picsum.photos/seed/thailand/1400/500',
+  'Vietnam':   'https://picsum.photos/seed/vietnam/1400/500',
+  'Turquie':   'https://picsum.photos/seed/turkey/1400/500',
+  'Australie': 'https://picsum.photos/seed/australia/1400/500',
+  'Cuba':      'https://picsum.photos/seed/cuba/1400/500',
+};
+const DEFAULT = 'https://picsum.photos/seed/travel/1400/500';
+
+function getCoverImg(paysNom) {
+  return COVERS[paysNom] || `https://picsum.photos/seed/${encodeURIComponent(paysNom)}/1400/500`;
 }
 
-// Photos fixes par pays — IDs Unsplash stables
-const COVERS = {
-  'Mongolie': 'https://images.unsplash.com/photo-1524220737062-1763cf92b72b?w=1400&q=85',
-  'Norvège':  'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1400&q=85',
-  'Japon':    'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1400&q=85',
-  'Brésil':   'https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=1400&q=85',
-  'Inde':     'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=1400&q=85',
-  'Islande':  'https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=1400&q=85',
-  'Pérou':    'https://images.unsplash.com/photo-1580502304784-8985b7eb7260?w=1400&q=85',
-  'Grèce':    'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1400&q=85',
-  'Kenya':    'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1400&q=85',
-  'Maroc':    'https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=1400&q=85',
-  'Chine':    'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1400&q=85',
-  'Argentine':'https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=1400&q=85',
-  'Égypte':   'https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=1400&q=85',
-  'Colombie': 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=1400&q=85',
-  'Portugal': 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=1400&q=85',
-  'Mexique':  'https://images.unsplash.com/photo-1518638150340-f706e86654de?w=1400&q=85',
-  'Thaïlande':'https://images.unsplash.com/photo-1528181304800-259b08848526?w=1400&q=85',
-  'Éthiopie': 'https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=1400&q=85',
-  'Vietnam':  'https://images.unsplash.com/photo-1528127269322-539801943592?w=1400&q=85',
-  'Turquie':  'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1400&q=85',
-  'Australie':'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=1400&q=85',
-  'Cuba':     'https://images.unsplash.com/photo-1500759285222-a95626b934cb?w=1400&q=85',
-  'Ghana':    'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1400&q=85',
-  'Iran':     'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=85',
-};
-const DEFAULT = 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1400&q=85';
-
-// Photos par rubrique — IDs stables
 const ART_IMGS = [
-  'https://images.unsplash.com/photo-1578926288207-a90a103f4fe1?w=800&q=80',
-  'https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800&q=80',
-  'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80',
+  'https://picsum.photos/seed/art1/800/300',
+  'https://picsum.photos/seed/art2/800/300',
+  'https://picsum.photos/seed/art3/800/300',
 ];
 const MUSIC_IMGS = [
-  'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80',
-  'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&q=80',
-  'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=800&q=80',
+  'https://picsum.photos/seed/music1/800/300',
+  'https://picsum.photos/seed/music2/800/300',
 ];
 const NATURE_IMGS = [
-  'https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=800&q=80',
-  'https://images.unsplash.com/photo-1456926631375-92c8ce872def?w=800&q=80',
-  'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=800&q=80',
+  'https://picsum.photos/seed/nature1/800/300',
+  'https://picsum.photos/seed/nature2/800/300',
+  'https://picsum.photos/seed/nature3/800/300',
 ];
 
 function h(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -337,7 +330,7 @@ async function loadEdition() {
   const ed = data[0]; const c = ed.contenu;
   document.title = `Culti · ${ed.date} · ${c.pays?.nom}`;
 
-  const coverImg = COVERS[c.pays?.nom] || DEFAULT;
+  const coverImg = getCoverImg(c.pays?.nom);
   document.getElementById('cover-img').src = coverImg;
   document.getElementById('cover-flag').textContent = c.pays?.flag || '🌍';
   document.getElementById('cover-title').textContent = `${c.pays?.nom} — ${c.pays?.titre}`;
