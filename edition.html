@@ -5,237 +5,302 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Culti — Édition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --ink: #1A1A2E; --white: #FFFFFF; --sand: #FFF8F0;
-  --coral: #FF6B6B; --teal: #4ECDC4; --yellow: #FFE66D;
-  --slate: #4A5568; --slate-light: #718096;
-  --radius: 16px; --radius-sm: 10px;
+  --coral: #FF6B6B; --teal: #4ECDC4; --yellow: #FFE66D; --ink: #1A1A2E;
+  --sand: #FFF8F0; --sand2: #FFE5D0; --slate: #4A5568; --light: #F7F7F7;
+  --white: #FFFFFF; --radius: 20px; --radius-sm: 12px;
 }
-body { font-family: 'Nunito', sans-serif; color: var(--ink); background: #FFF8F0; }
-nav { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 2px solid #FFE5D0; padding: 1rem 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--ink); text-decoration: none; }
-.nav-logo span { color: var(--coral); }
-.nav-back { font-size: 13px; color: #4A5568; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 4px; }
-.nav-back:hover { color: var(--coral); }
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; background: #F9F6F2; color: var(--ink); line-height: 1.7; }
 
-/* COVER */
-.cover { position: relative; height: 400px; overflow: hidden; }
-.cover-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.cover-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,26,46,0.1) 0%, rgba(26,26,46,0.75) 100%); }
-.cover-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem; }
-.cover-label { display: inline-block; background: var(--coral); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 14px; border-radius: 50px; margin-bottom: 0.75rem; }
-.cover-flag { font-size: 48px; display: block; margin-bottom: 0.5rem; }
-.cover-title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 4vw, 40px); color: var(--white); line-height: 1.15; margin-bottom: 0.5rem; }
-.cover-date { font-size: 13px; color: rgba(255,255,255,0.55); }
+/* NAV */
+nav { background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 2px solid var(--sand2); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+.nav-logo { text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.nav-mark { width: 36px; height: 36px; border-radius: 10px; background: var(--coral); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; color: white; flex-shrink: 0; }
+.nav-name { font-size: 20px; font-weight: 900; color: var(--ink); letter-spacing: -0.02em; }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.nav-back { font-size: 13px; color: var(--slate); text-decoration: none; font-weight: 700; border: 2px solid var(--sand2); border-radius: 50px; padding: 5px 14px; transition: all 0.15s; }
+.nav-back:hover { border-color: var(--coral); color: var(--coral); }
+.nav-subscribe { font-size: 13px; background: var(--coral); color: white; text-decoration: none; font-weight: 700; border-radius: 50px; padding: 6px 16px; transition: transform 0.15s; }
+.nav-subscribe:hover { transform: scale(1.04); }
 
-/* MAIN */
-.main { max-width: 720px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+/* HERO COVER */
+.cover { position: relative; height: 480px; overflow: hidden; }
+.cover-img { width: 100%; height: 100%; object-fit: cover; }
+.cover-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%); }
+.cover-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem 3rem; }
+.cover-tags { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+.cover-tag { background: var(--coral); color: white; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 14px; border-radius: 50px; }
+.cover-tag-teal { background: var(--teal); color: white; }
+.cover-flag { font-size: 52px; display: block; margin-bottom: 0.5rem; line-height: 1; }
+.cover-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 44px); color: white; line-height: 1.15; margin-bottom: 0.5rem; font-weight: 700; }
+.cover-date { font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 600; }
 
-/* SECTION BLOCKS */
-.block { background: var(--white); border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; position: relative; overflow: hidden; }
-.block-accent { position: absolute; top: 0; left: 0; bottom: 0; width: 5px; border-radius: 4px 0 0 4px; }
-.accent-coral { background: var(--coral); }
-.accent-teal { background: var(--teal); }
-.accent-yellow { background: var(--yellow); }
-.accent-purple { background: #A78BFA; }
-.accent-green { background: #34D399; }
-.accent-orange { background: #FB923C; }
-.accent-pink { background: #F472B6; }
+/* PROGRESS BAR */
+.progress-bar { background: white; border-bottom: 1px solid #EEE; padding: 0.75rem 3rem; display: flex; align-items: center; gap: 1rem; }
+.progress-label { font-size: 12px; color: var(--slate); font-weight: 700; white-space: nowrap; }
+.progress-track { flex: 1; background: #EEE; border-radius: 6px; height: 6px; overflow: hidden; }
+.progress-fill { background: var(--coral); height: 100%; border-radius: 6px; width: 0%; transition: width 0.6s ease; }
+.progress-count { font-size: 12px; color: var(--coral); font-weight: 800; white-space: nowrap; }
 
-.block-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate-light); font-weight: 600; margin-bottom: 0.75rem; }
-.block-title { font-family: 'Playfair Display', serif; font-size: 24px; line-height: 1.2; margin-bottom: 0.5rem; color: var(--ink); }
-.block-sub { font-size: 13px; color: var(--slate-light); margin-bottom: 1rem; font-style: italic; }
-.block-body { font-size: 15px; line-height: 1.85; color: var(--slate); margin-bottom: 1rem; }
-.block-img { width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 1rem; display: block; }
+/* LAYOUT */
+.page { max-width: 800px; margin: 0 auto; padding: 2.5rem 2rem 5rem; }
 
-.stat-pill { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--white); border-radius: 50px; padding: 0.65rem 1.25rem; margin: 0.75rem 0; }
-.stat-pill-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--teal); }
-.stat-pill-text { font-size: 13px; color: rgba(255,255,255,0.65); }
+/* SECTION CARDS — chaque rubrique a son propre style */
+.s-card { background: white; border-radius: var(--radius); margin-bottom: 1.5rem; overflow: hidden; }
 
-.pull-quote { border-left: 4px solid var(--coral); padding: 0.75rem 1.25rem; margin: 1rem 0; font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--ink); line-height: 1.5; border-radius: 0; }
+/* Header de section */
+.s-header { display: flex; align-items: center; gap: 12px; padding: 1.25rem 1.75rem 0; }
+.s-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.s-icon-coral { background: #FFE5D0; }
+.s-icon-teal { background: #C8F0EE; }
+.s-icon-purple { background: #EDE9FE; }
+.s-icon-yellow { background: #FFF3CC; }
+.s-icon-green { background: #D1FAE5; }
+.s-icon-blue { background: #DBEAFE; }
+.s-icon-pink { background: #FCE7F3; }
+.s-label { font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; }
+.s-label-coral { color: #E05252; }
+.s-label-teal { color: #0E9488; }
+.s-label-purple { color: #7C3AED; }
+.s-label-yellow { color: #B45309; }
+.s-label-green { color: #059669; }
+.s-label-blue { color: #1D4ED8; }
+.s-label-pink { color: #BE185D; }
 
-.lesson-box { background: #FFF8F0; border: 2px solid #FFE5D0; border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin: 1rem 0; font-size: 14px; line-height: 1.6; color: var(--slate); }
-.lesson-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral); font-weight: 700; margin-bottom: 6px; }
+.s-body { padding: 0.75rem 1.75rem 1.5rem; }
+.s-img { width: 100%; height: 220px; object-fit: cover; margin: 0.75rem 0; border-radius: var(--radius-sm); display: block; }
+.s-img-wide { border-radius: 0; margin: 0.75rem 0 0; height: 200px; }
 
-.defi-box { background: #E0F7F6; border: 2px solid #A8E6E3; border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin: 1rem 0; font-size: 14px; line-height: 1.6; color: #0E7490; }
-.defi-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin-bottom: 6px; }
+.s-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.25; margin-bottom: 0.35rem; }
+.s-sub { font-size: 13px; color: var(--slate); font-weight: 600; margin-bottom: 0.75rem; }
+.s-text { font-size: 15px; color: #374151; line-height: 1.85; margin-bottom: 0.75rem; }
 
-.dark-block { background: #1A1A2E; border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; }
-.dark-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); font-weight: 600; margin-bottom: 8px; }
-.dark-title { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--white); margin-bottom: 8px; }
-.dark-body { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; }
-.dark-accent { font-size: 13px; color: var(--teal); font-style: italic; margin-top: 8px; }
+/* Stat pill */
+.stat-pill { display: inline-flex; align-items: baseline; gap: 10px; background: var(--ink); color: white; border-radius: 50px; padding: 0.5rem 1.25rem; margin: 0.5rem 0 0.75rem; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--teal); }
+.stat-txt { font-size: 13px; color: rgba(255,255,255,0.7); }
 
-.yt-btn { display: inline-flex; align-items: center; gap: 8px; background: #FF0000; color: var(--white); border-radius: 50px; padding: 8px 16px; font-size: 13px; font-weight: 600; text-decoration: none; margin-top: 10px; transition: opacity 0.2s; }
-.yt-btn:hover { opacity: 0.85; }
+/* Leçon */
+.lecon { background: var(--sand); border-left: 4px solid var(--coral); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1.25rem; margin-top: 0.75rem; font-size: 14px; color: var(--ink); font-style: italic; font-weight: 600; }
 
-.citation-block { background: #FFF8F0; border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; text-align: center; }
-.citation-quote { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: var(--ink); line-height: 1.5; margin-bottom: 0.75rem; }
-.citation-attr { font-size: 13px; color: var(--coral); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+/* Défi */
+.defi { background: #E0F7F6; border-radius: var(--radius-sm); padding: 0.85rem 1.25rem; margin-top: 0.75rem; font-size: 14px; color: #0E7490; font-weight: 700; }
+.defi::before { content: "✦ Défi — "; color: var(--teal); }
+
+/* Idée du jour — carte spéciale sombre */
+.s-card-dark { background: var(--ink); border-radius: var(--radius); margin-bottom: 1.5rem; overflow: hidden; padding: 1.75rem; }
+.s-card-dark .s-label { color: var(--teal); }
+.s-card-dark .s-icon { background: rgba(78,205,196,0.15); }
+.dark-word { font-family: 'Playfair Display', serif; font-size: 36px; color: white; margin: 0.5rem 0; }
+.dark-lang { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.dark-def { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 0.5rem; }
+.dark-why { font-size: 13px; color: var(--teal); font-style: italic; font-weight: 600; }
+
+/* Citation */
+.s-card-citation { background: var(--sand); border-radius: var(--radius); margin-bottom: 1.5rem; padding: 2rem 1.75rem; text-align: center; border: 2px solid var(--sand2); }
+.citation-mark { font-size: 48px; color: var(--coral); line-height: 1; margin-bottom: 0.5rem; font-family: Georgia, serif; }
+.citation-q { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: var(--ink); line-height: 1.5; margin-bottom: 0.75rem; }
+.citation-author { font-size: 13px; color: var(--coral); font-weight: 800; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
 .citation-modern { font-size: 14px; color: var(--slate); font-style: italic; }
 
-/* ENIGME */
-.enigme-block { background: var(--yellow); border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; text-align: center; }
-.enigme-emoji { font-size: 36px; margin-bottom: 0.75rem; }
+/* YouTube */
+.yt-link { display: inline-flex; align-items: center; gap: 8px; background: #FF0000; color: white; border-radius: 50px; padding: 8px 18px; font-size: 13px; font-weight: 800; text-decoration: none; margin-top: 0.75rem; transition: opacity 0.2s; }
+.yt-link:hover { opacity: 0.85; }
+.yt-link::before { content: "▶"; }
+
+/* Énigme */
+.enigme-card { background: var(--yellow); border-radius: var(--radius); margin-bottom: 1.5rem; padding: 2rem; text-align: center; }
+.enigme-emoji { font-size: 40px; margin-bottom: 0.75rem; }
 .enigme-q { font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.5; }
-.enigme-btn { background: var(--ink); color: var(--white); border: none; padding: 0.65rem 1.5rem; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Nunito', sans-serif; transition: transform 0.15s; }
+.enigme-btn { background: var(--ink); color: white; border: none; padding: 0.65rem 1.5rem; border-radius: 50px; font-size: 14px; font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif; transition: transform 0.15s; }
 .enigme-btn:hover { transform: scale(1.04); }
-.enigme-rep { font-size: 16px; color: var(--ink); margin-top: 1rem; font-weight: 600; display: none; }
+.enigme-rep { font-size: 16px; color: var(--ink); margin-top: 1rem; font-weight: 800; display: none; }
 
 /* QUIZ */
-.quiz-block { background: var(--white); border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; border: 2px solid #FFE5D0; }
-.quiz-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
-.quiz-title { font-size: 16px; font-weight: 700; color: var(--ink); }
-.quiz-badge { background: var(--coral); color: var(--white); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 50px; }
-.quiz-prog-wrap { margin-bottom: 1.5rem; }
-.quiz-prog-track { background: #FFE5D0; border-radius: 6px; height: 6px; }
-.quiz-prog-fill { background: var(--coral); height: 100%; border-radius: 6px; transition: width 0.4s ease; }
-.q-num { font-size: 11px; color: var(--slate-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
-.q-text { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 1rem; line-height: 1.4; }
-.q-opts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
-.q-opt { background: var(--sand); border: 2px solid #FFE5D0; border-radius: var(--radius-sm); padding: 0.75rem 1rem; font-size: 14px; cursor: pointer; text-align: left; color: var(--ink); font-family: 'Nunito', sans-serif; transition: all 0.15s; font-weight: 500; }
+.quiz-card { background: white; border-radius: var(--radius); margin-bottom: 1.5rem; overflow: hidden; border: 2px solid var(--sand2); }
+.quiz-top { background: var(--coral); padding: 1.25rem 1.75rem; display: flex; align-items: center; justify-content: space-between; }
+.quiz-top-title { font-size: 16px; font-weight: 900; color: white; }
+.quiz-top-badge { background: rgba(255,255,255,0.25); color: white; font-size: 12px; font-weight: 800; padding: 4px 12px; border-radius: 50px; }
+.quiz-prog-track { background: var(--sand2); height: 5px; }
+.quiz-prog-fill { background: var(--coral); height: 100%; transition: width 0.4s ease; width: 0%; }
+.quiz-body { padding: 1.5rem 1.75rem; }
+.q-num { font-size: 11px; color: var(--slate); font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+.q-text { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 1.25rem; line-height: 1.4; }
+.q-opts { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.25rem; }
+.q-opt { background: #F9F6F2; border: 2px solid #EEE; border-radius: var(--radius-sm); padding: 0.85rem 1.25rem; font-size: 15px; cursor: pointer; text-align: left; color: var(--ink); font-family: 'Nunito', sans-serif; font-weight: 600; transition: all 0.15s; }
 .q-opt:hover { background: #FFE5D0; border-color: var(--coral); }
-.q-opt.correct { background: #DCFCE7; border-color: #34D399; color: #065F46; }
-.q-opt.wrong { background: #FEE2E2; border-color: #F87171; color: #991B1B; }
-.q-feedback { font-size: 13px; color: var(--slate); margin-bottom: 10px; display: none; padding: 0.65rem 1rem; background: var(--sand); border-radius: var(--radius-sm); }
+.q-opt.correct { background: #D1FAE5; border-color: #34D399; color: #065F46; font-weight: 800; }
+.q-opt.wrong { background: #FEE2E2; border-color: #F87171; color: #991B1B; font-weight: 800; }
+.q-feedback { font-size: 14px; color: var(--slate); margin-bottom: 1rem; padding: 0.75rem 1rem; background: #F9F6F2; border-radius: var(--radius-sm); font-weight: 600; display: none; }
 .q-nav { display: flex; align-items: center; justify-content: space-between; }
-.q-score { font-size: 14px; color: var(--slate-light); font-weight: 500; }
-.q-next { background: var(--coral); color: var(--white); border: none; padding: 0.65rem 1.5rem; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Nunito', sans-serif; display: none; transition: transform 0.15s; }
+.q-score { font-size: 14px; color: var(--slate); font-weight: 700; }
+.q-next { background: var(--coral); color: white; border: none; padding: 0.65rem 1.5rem; border-radius: 50px; font-size: 14px; font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif; display: none; transition: transform 0.15s; }
 .q-next:hover { transform: scale(1.04); }
-.result-box { text-align: center; padding: 1.5rem; display: none; }
-.result-emoji { font-size: 56px; margin-bottom: 0.75rem; }
-.result-num { font-family: 'Playfair Display', serif; font-size: 52px; color: var(--coral); line-height: 1; }
-.result-label { font-size: 16px; color: var(--slate); margin: 0.5rem 0 1rem; }
-.badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 1rem 0; }
-.badge { border: 2px solid #FFE5D0; border-radius: var(--radius-sm); padding: 6px 14px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; background: var(--sand); }
-.badge.earned { border-color: var(--teal); color: #0E7490; background: #E0F7F6; }
+
+/* RÉSULTAT QUIZ */
+.result-box { text-align: center; padding: 2rem; display: none; }
+.result-emoji { font-size: 64px; margin-bottom: 0.5rem; }
+.result-score { font-family: 'Playfair Display', serif; font-size: 56px; color: var(--coral); line-height: 1; }
+.result-label { font-size: 18px; font-weight: 800; color: var(--ink); margin: 0.5rem 0 1rem; }
+.badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.badge { border: 2px solid #EEE; border-radius: var(--radius-sm); padding: 8px 16px; font-size: 13px; font-weight: 700; background: #F9F6F2; }
+.badge.earned { border-color: var(--teal); color: #0E7490; background: #CCFBF1; }
 
 /* NAV BOTTOM */
-.nav-bottom { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; border-top: 2px solid #FFE5D0; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
-.btn-ink { background: #FF6B6B; color: white; text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 14px; font-weight: 600; transition: opacity 0.2s; }
-.btn-ink:hover { opacity: 0.85; }
-.btn-coral { background: var(--coral); color: var(--white); text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 14px; font-weight: 600; transition: transform 0.15s; }
-.btn-coral:hover { transform: scale(1.04); }
+.nav-bottom { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0 0; border-top: 2px solid var(--sand2); flex-wrap: wrap; gap: 1rem; }
+.btn-back-bottom { background: white; color: var(--ink); text-decoration: none; padding: 0.85rem 1.75rem; border-radius: 50px; font-size: 14px; font-weight: 800; border: 2px solid var(--sand2); transition: all 0.15s; }
+.btn-back-bottom:hover { border-color: var(--coral); color: var(--coral); }
+.btn-subscribe-bottom { background: var(--coral); color: white; text-decoration: none; padding: 0.85rem 1.75rem; border-radius: 50px; font-size: 14px; font-weight: 800; transition: transform 0.15s; }
+.btn-subscribe-bottom:hover { transform: scale(1.04); }
 
-.loading-state { text-align: center; padding: 6rem 2rem; color: var(--slate-light); font-size: 15px; }
-@media (max-width: 640px) { nav { padding: 1rem 1.5rem; } .main { padding: 1.5rem 1rem 3rem; } .cover { height: 300px; } .cover-content { padding: 1.5rem; } }
+.loading-state { text-align: center; padding: 6rem 2rem; color: var(--slate); font-size: 16px; font-weight: 600; }
+
+@media (max-width: 640px) {
+  nav { padding: 0.75rem 1.25rem; }
+  .cover { height: 340px; }
+  .cover-content { padding: 1.5rem; }
+  .page { padding: 1.5rem 1rem 4rem; }
+  .s-body { padding: 0.75rem 1.25rem 1.25rem; }
+  .s-header { padding: 1.25rem 1.25rem 0; }
+  .progress-bar { padding: 0.75rem 1.25rem; }
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:10px;"><div style="width:36px;height:36px;border-radius:10px;background:#FF6B6B;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:white;flex-shrink:0;">C</div><span style="font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#1A1A2E;letter-spacing:-0.02em;">culti</span></a>
-  <a href="archives.html" class="nav-back">← Archives</a>
+  <a href="/" class="nav-logo">
+    <div class="nav-mark">C</div>
+    <span class="nav-name">culti</span>
+  </a>
+  <div class="nav-right">
+    <a href="archives.html" class="nav-back">← Archives</a>
+    <a href="/#newsletter" class="nav-subscribe">S'abonner ☀️</a>
+  </div>
 </nav>
 
 <div id="loading-state" class="loading-state">☀️ Chargement de l'édition...</div>
 
 <div id="content" style="display:none;">
 
-  <div class="cover" id="cover">
-    <img class="cover-img" id="cover-img" src="" alt="Édition du jour">
+  <div class="cover">
+    <img class="cover-img" id="cover-img" src="" alt="">
     <div class="cover-overlay"></div>
     <div class="cover-content">
-      <span class="cover-label">Édition du jour</span>
+      <div class="cover-tags">
+        <span class="cover-tag">Édition du jour</span>
+        <span class="cover-tag cover-tag-teal" id="cover-num"></span>
+      </div>
       <span class="cover-flag" id="cover-flag">🌍</span>
       <h1 class="cover-title" id="cover-title"></h1>
       <div class="cover-date" id="cover-date"></div>
     </div>
   </div>
 
-  <main class="main">
+  <div class="progress-bar">
+    <span class="progress-label">Progression de lecture</span>
+    <div class="progress-track"><div class="progress-fill" id="read-prog"></div></div>
+    <span class="progress-count" id="read-count">0 / 8</span>
+  </div>
 
-    <div class="block" id="block-pays">
-      <div class="block-accent accent-coral"></div>
-    </div>
+  <div class="page">
 
-    <div class="block" id="block-perso">
-      <div class="block-accent accent-teal"></div>
-    </div>
-
-    <div class="block" id="block-art">
-      <div class="block-accent accent-purple"></div>
-    </div>
-
-    <div class="block" id="block-musique">
-      <div class="block-accent accent-yellow"></div>
-    </div>
-
-    <div class="block" id="block-livre" style="display:none;">
-      <div class="block-accent accent-green"></div>
-    </div>
-
-    <div class="dark-block" id="block-idee"></div>
-
-    <div class="block" id="block-vivant">
-      <div class="block-accent accent-orange"></div>
-    </div>
-
-    <div class="citation-block" id="block-citation"></div>
-
-    <div class="enigme-block" id="block-enigme"></div>
-
-    <div class="quiz-block" id="quiz-block">
-      <div class="quiz-header">
-        <div class="quiz-title">🎯 Quiz du jour</div>
-        <div class="quiz-badge" id="quiz-badge">5 questions</div>
+    <div class="s-card" id="s-pays"></div>
+    <div class="s-card" id="s-perso"></div>
+    <div class="s-card" id="s-art"></div>
+    <div class="s-card" id="s-musique"></div>
+    <div class="s-card-dark" id="s-idee"></div>
+    <div class="s-card" id="s-vivant"></div>
+    <div class="s-card-citation" id="s-citation"></div>
+    <div class="enigme-card" id="s-enigme"></div>
+    <div class="quiz-card" id="s-quiz">
+      <div class="quiz-top">
+        <div class="quiz-top-title">🎯 Quiz du jour</div>
+        <div class="quiz-top-badge" id="quiz-badge">5 questions</div>
       </div>
-      <div class="quiz-prog-wrap">
-        <div class="quiz-prog-track"><div class="quiz-prog-fill" id="quiz-prog" style="width:0%"></div></div>
-      </div>
-      <div id="quiz-display">
-        <div class="q-num" id="q-num">Question 1 sur 5</div>
-        <div class="q-text" id="q-text"></div>
-        <div class="q-opts" id="q-opts"></div>
-        <div class="q-feedback" id="q-feedback"></div>
-        <div class="q-nav">
-          <div class="q-score" id="q-score">0 / 5</div>
-          <button class="q-next" id="q-next" onclick="nextQ()">Suivant →</button>
+      <div class="quiz-prog-track"><div class="quiz-prog-fill" id="quiz-prog"></div></div>
+      <div class="quiz-body">
+        <div id="quiz-display">
+          <div class="q-num" id="q-num">Question 1 sur 5</div>
+          <div class="q-text" id="q-text"></div>
+          <div class="q-opts" id="q-opts"></div>
+          <div class="q-feedback" id="q-feedback"></div>
+          <div class="q-nav">
+            <div class="q-score" id="q-score">0 / 5</div>
+            <button class="q-next" id="q-next" onclick="nextQ()">Suivant →</button>
+          </div>
         </div>
-      </div>
-      <div class="result-box" id="quiz-result">
-        <div class="result-emoji" id="res-emoji">🎉</div>
-        <div class="result-num" id="res-num"></div>
-        <div class="result-label" id="res-label"></div>
-        <div class="badges" id="res-badges"></div>
-        <p style="font-size:13px;color:var(--slate-light);margin-top:1rem;">Points ajoutés à votre score Culti !</p>
+        <div class="result-box" id="quiz-result">
+          <div class="result-emoji" id="res-emoji">🎉</div>
+          <div class="result-score" id="res-score"></div>
+          <div class="result-label" id="res-label"></div>
+          <div class="badges" id="res-badges"></div>
+          <p style="font-size:13px;color:var(--slate);margin-top:1rem;font-weight:600;">Points ajoutés à votre score Culti !</p>
+        </div>
       </div>
     </div>
 
     <div class="nav-bottom">
-      <a href="archives.html" class="btn-ink">← Toutes les éditions</a>
-      <a href="/#newsletter" class="btn-coral">S'abonner gratuitement ☀️</a>
+      <a href="archives.html" class="btn-back-bottom">← Toutes les éditions</a>
+      <a href="/#newsletter" class="btn-subscribe-bottom">S'abonner gratuitement ☀️</a>
     </div>
 
-  </main>
+  </div>
 </div>
 
 <script>
-const SUPABASE_URL = 'https://zuahstlswkprzdmflekg.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1YWhzdGxzd2twcnpkbWZsZWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDU2MjMsImV4cCI6MjA5NzAyMTYyM30.-F0WRbiprAa-Zt1ih1QdsQzuuqVW2froK6Ddfvrqoik';
+const SB_URL = 'https://zuahstlswkprzdmflekg.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1YWhzdGxzd2twcnpkbWZsZWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDU2MjMsImV4cCI6MjA5NzAyMTYyM30.-F0WRbiprAa-Zt1ih1QdsQzuuqVW2froK6Ddfvrqoik';
 
-const COVER_IMGS = {
-  'Mongolie': 'https://images.unsplash.com/photo-1513415431634-79a9a41bcb23?w=1200&q=80',
-  'Norvège': 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&q=80',
-  'Japon': 'https://images.unsplash.com/photo-1480796927426-f609979314bd?w=1200&q=80',
-  'Brésil': 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1200&q=80',
-  'Inde': 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200&q=80',
-  'Islande': 'https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=1200&q=80',
-  'Pérou': 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1200&q=80',
-  'Grèce': 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1200&q=80',
-  'Kenya': 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=80',
-  'Maroc': 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80',
-  'Chine': 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1200&q=80',
-  'Argentine': 'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=1200&q=80',
-  'Égypte': 'https://images.unsplash.com/photo-1539650116574-75c0c6d73e6e?w=1200&q=80',
-  'Colombie': 'https://images.unsplash.com/photo-1555636222-cae831e670b3?w=1200&q=80',
+const COVERS = {
+  'Mongolie':'https://images.unsplash.com/photo-1513415431634-79a9a41bcb23?w=1400&q=85',
+  'Norvège':'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1400&q=85',
+  'Japon':'https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1400&q=85',
+  'Brésil':'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1400&q=85',
+  'Inde':'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1400&q=85',
+  'Islande':'https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=1400&q=85',
+  'Pérou':'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1400&q=85',
+  'Grèce':'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1400&q=85',
+  'Kenya':'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1400&q=85',
+  'Maroc':'https://images.unsplash.com/photo-1548013146-72479768bada?w=1400&q=85',
+  'Chine':'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1400&q=85',
+  'Argentine':'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=1400&q=85',
+  'Égypte':'https://images.unsplash.com/photo-1539650116574-75c0c6d73e6e?w=1400&q=85',
+  'Colombie':'https://images.unsplash.com/photo-1555636222-cae831e670b3?w=1400&q=85',
 };
-const DEFAULT_IMG = 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=80';
+const ART_IMGS = [
+  'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=80',
+  'https://images.unsplash.com/photo-1547653801-6d2b34e1e4f8?w=800&q=80',
+  'https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&q=80',
+];
+const MUSIC_IMGS = [
+  'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80',
+  'https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80',
+];
+const NATURE_IMGS = [
+  'https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=800&q=80',
+  'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=800&q=80',
+  'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=800&q=80',
+];
+const DEFAULT = 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1400&q=85';
 
 function h(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function ri(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
+
+let sectionsRead = 0;
+const totalSections = 8;
+function markRead(el) {
+  if (el.dataset.read) return;
+  el.dataset.read = '1';
+  sectionsRead = Math.min(sectionsRead + 1, totalSections);
+  const pct = Math.round((sectionsRead / totalSections) * 100);
+  document.getElementById('read-prog').style.width = pct + '%';
+  document.getElementById('read-count').textContent = sectionsRead + ' / ' + totalSections;
+}
 
 let quizData=[], cur=0, correct=0, answered=false;
 
@@ -243,100 +308,133 @@ async function loadEdition() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
   const url = id
-    ? `${SUPABASE_URL}/rest/v1/editions?id=eq.${id}&select=*`
-    : `${SUPABASE_URL}/rest/v1/editions?select=*&order=created_at.desc&limit=1`;
-
-  const res = await fetch(url, { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } });
+    ? `${SB_URL}/rest/v1/editions?id=eq.${id}&select=*`
+    : `${SB_URL}/rest/v1/editions?select=*&order=created_at.desc&limit=1`;
+  const res = await fetch(url, { headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` } });
   const data = await res.json();
-  if (!data || !data.length) { document.getElementById('loading-state').innerHTML = '😕 Édition introuvable.<br><a href="archives.html">← Archives</a>'; return; }
+  if (!data || !data.length) { document.getElementById('loading-state').innerHTML = '😕 Édition introuvable. <a href="archives.html">← Archives</a>'; return; }
 
   const ed = data[0]; const c = ed.contenu;
   document.title = `Culti · ${ed.date} · ${c.pays?.nom}`;
 
-  // Cover
-  const img = COVER_IMGS[c.pays?.nom] || DEFAULT_IMG;
-  document.getElementById('cover-img').src = img;
+  const coverImg = COVERS[c.pays?.nom] || DEFAULT;
+  document.getElementById('cover-img').src = coverImg;
   document.getElementById('cover-flag').textContent = c.pays?.flag || '🌍';
   document.getElementById('cover-title').textContent = `${c.pays?.nom} — ${c.pays?.titre}`;
   document.getElementById('cover-date').textContent = ed.date;
+  document.getElementById('cover-num').textContent = '✦ ' + (c.pays?.nom || '');
 
-  // Pays
-  document.getElementById('block-pays').innerHTML = `
-    <div class="block-accent accent-coral"></div>
-    <div class="block-eyebrow">🌍 Le monde</div>
-    <div class="block-title">${h(c.pays?.nom)} — ${h(c.pays?.titre)}</div>
-    <img src="${img}" class="block-img" alt="${h(c.pays?.nom)}" loading="lazy">
-    <div class="block-body">${h(c.pays?.intro)}</div>
-    <div class="stat-pill"><span class="stat-pill-num">${h(c.pays?.chiffre)}</span><span class="stat-pill-text">${h(c.pays?.chiffre_label)}</span></div>
-    <div class="pull-quote">${h(c.pays?.lecon)}</div>`;
+  // PAYS
+  document.getElementById('s-pays').innerHTML = `
+    <div class="s-header">
+      <div class="s-icon s-icon-coral">🌍</div>
+      <div><div class="s-label s-label-coral">Le monde</div></div>
+    </div>
+    <img src="${coverImg}" class="s-img s-img-wide" alt="${h(c.pays?.nom)}" loading="lazy">
+    <div class="s-body">
+      <div class="s-title">${h(c.pays?.nom)} — ${h(c.pays?.titre)}</div>
+      <div class="s-text">${h(c.pays?.intro)}</div>
+      <div class="stat-pill"><span class="stat-num">${h(c.pays?.chiffre)}</span><span class="stat-txt">${h(c.pays?.chiffre_label)}</span></div>
+      <div class="lecon">${h(c.pays?.lecon)}</div>
+    </div>`;
 
-  // Personnalité
-  document.getElementById('block-perso').innerHTML = `
-    <div class="block-accent accent-teal"></div>
-    <div class="block-eyebrow">👤 Destin extraordinaire</div>
-    <div class="block-title">${h(c.personnalite?.nom)}</div>
-    <div class="block-sub">${h(c.personnalite?.epoque)} · ${h(c.personnalite?.titre)}</div>
-    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=700&q=80" class="block-img" alt="Portrait" loading="lazy">
-    <div class="block-body">${h(c.personnalite?.histoire)}</div>
-    <div class="lesson-box"><div class="lesson-label">💡 Leçon</div>${h(c.personnalite?.lecon)}</div>`;
+  // PERSONNALITÉ
+  document.getElementById('s-perso').innerHTML = `
+    <div class="s-header">
+      <div class="s-icon s-icon-teal">👤</div>
+      <div><div class="s-label s-label-teal">Destin extraordinaire</div></div>
+    </div>
+    <div class="s-body">
+      <div class="s-title">${h(c.personnalite?.nom)}</div>
+      <div class="s-sub">${h(c.personnalite?.epoque)} · ${h(c.personnalite?.titre)}</div>
+      <img src="https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=800&q=80" class="s-img" alt="Portrait" loading="lazy">
+      <div class="s-text">${h(c.personnalite?.histoire)}</div>
+      <div class="lecon">${h(c.personnalite?.lecon)}</div>
+    </div>`;
 
-  // Art
-  document.getElementById('block-art').innerHTML = `
-    <div class="block-accent accent-purple"></div>
-    <div class="block-eyebrow">🎨 Art · ${h(c.art?.artiste)}</div>
-    <div class="block-title">${h(c.art?.oeuvre)} <span style="font-size:15px;color:var(--slate-light);font-family:Inter,sans-serif;">(${h(c.art?.annee)})</span></div>
-    <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=700&q=80" class="block-img" alt="Art" loading="lazy">
-    <div class="block-body">${h(c.art?.description)}</div>
-    <div class="defi-box"><div class="defi-label">✦ Défi</div>${h(c.art?.defi)}</div>`;
+  // ART
+  document.getElementById('s-art').innerHTML = `
+    <div class="s-header">
+      <div class="s-icon s-icon-purple">🎨</div>
+      <div><div class="s-label s-label-purple">Art · ${h(c.art?.artiste)}</div></div>
+    </div>
+    <div class="s-body">
+      <div class="s-title">${h(c.art?.oeuvre)}</div>
+      <div class="s-sub">${h(c.art?.artiste)}, ${h(c.art?.annee)}</div>
+      <img src="${ri(ART_IMGS)}" class="s-img" alt="Art" loading="lazy">
+      <div class="s-text">${h(c.art?.description)}</div>
+      <div class="defi">${h(c.art?.defi)}</div>
+    </div>`;
 
-  // Musique
+  // MUSIQUE
   const ytUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(c.musique?.youtube_search||'')}`;
-  document.getElementById('block-musique').innerHTML = `
-    <div class="block-accent accent-yellow"></div>
-    <div class="block-eyebrow">🎵 Musique · ${h(c.musique?.artiste)}</div>
-    <div class="block-title">${h(c.musique?.titre)} <span style="font-size:15px;color:var(--slate-light);font-family:Inter,sans-serif;">(${h(c.musique?.annee)})</span></div>
-    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=700&q=80" class="block-img" alt="Musique" loading="lazy">
-    <div class="block-body">${h(c.musique?.anecdote)}</div>
-    <div class="lesson-box"><div class="lesson-label">💡 Ce que ça nous apprend</div>${h(c.musique?.lecon)}</div>
-    <a class="yt-btn" href="${ytUrl}" target="_blank">▶ Écouter sur YouTube</a>`;
+  document.getElementById('s-musique').innerHTML = `
+    <div class="s-header">
+      <div class="s-icon s-icon-yellow">🎵</div>
+      <div><div class="s-label s-label-yellow">Musique · ${h(c.musique?.artiste)}</div></div>
+    </div>
+    <div class="s-body">
+      <div class="s-title">${h(c.musique?.titre)}</div>
+      <div class="s-sub">${h(c.musique?.artiste)}, ${h(c.musique?.annee)}</div>
+      <img src="${ri(MUSIC_IMGS)}" class="s-img" alt="Musique" loading="lazy">
+      <div class="s-text">${h(c.musique?.anecdote)}</div>
+      <div class="lecon">${h(c.musique?.lecon)}</div>
+      <a class="yt-link" href="${ytUrl}" target="_blank"> Écouter sur YouTube</a>
+    </div>`;
 
-  // Idée
-  document.getElementById('block-idee').innerHTML = `
-    <div class="dark-eyebrow">🧠 Idée du jour · ${h(c.idee?.langue)}</div>
-    <div class="dark-title">${h(c.idee?.mot)}</div>
-    <div class="dark-body">${h(c.idee?.definition)}</div>
-    <div class="dark-accent">${h(c.idee?.pourquoi)}</div>`;
+  // IDÉE
+  document.getElementById('s-idee').innerHTML = `
+    <div class="s-header" style="padding:0 0 0.75rem;">
+      <div class="s-icon" style="background:rgba(78,205,196,0.15);">🧠</div>
+      <div><div class="s-label" style="color:var(--teal);">Idée du jour · ${h(c.idee?.langue)}</div></div>
+    </div>
+    <div class="dark-word">${h(c.idee?.mot)}</div>
+    <div class="dark-lang">${h(c.idee?.langue)}</div>
+    <div class="dark-def">${h(c.idee?.definition)}</div>
+    <div class="dark-why">${h(c.idee?.pourquoi)}</div>`;
 
-  // Vivant
-  document.getElementById('block-vivant').innerHTML = `
-    <div class="block-accent accent-orange"></div>
-    <div class="block-eyebrow">🦁 Le vivant · ${h(c.vivant?.animal)}</div>
-    <div class="block-title">${h(c.vivant?.animal)}</div>
-    <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=700&q=80" class="block-img" alt="Nature" loading="lazy">
-    <div class="block-body">${h(c.vivant?.fait1)}</div>
-    <div class="block-body">${h(c.vivant?.fait2)}</div>
-    <div class="lesson-box"><div class="lesson-label">💡 Ce que ça nous apprend</div>${h(c.vivant?.lecon)}</div>`;
+  // VIVANT
+  document.getElementById('s-vivant').innerHTML = `
+    <div class="s-header">
+      <div class="s-icon s-icon-green">🦁</div>
+      <div><div class="s-label s-label-green">Le vivant · ${h(c.vivant?.animal)}</div></div>
+    </div>
+    <div class="s-body">
+      <div class="s-title">${h(c.vivant?.animal)}</div>
+      <img src="${ri(NATURE_IMGS)}" class="s-img" alt="${h(c.vivant?.animal)}" loading="lazy">
+      <div class="s-text">${h(c.vivant?.fait1)}</div>
+      <div class="s-text">${h(c.vivant?.fait2)}</div>
+      <div class="lecon">${h(c.vivant?.lecon)}</div>
+    </div>`;
 
-  // Citation
-  document.getElementById('block-citation').innerHTML = `
-    <div style="font-size:36px;margin-bottom:0.75rem;">💬</div>
-    <div class="citation-quote">"${h(c.citation?.texte)}"</div>
-    <div class="citation-attr">— ${h(c.citation?.auteur)}</div>
+  // CITATION
+  document.getElementById('s-citation').innerHTML = `
+    <div class="citation-mark">"</div>
+    <div class="citation-q">${h(c.citation?.texte)}</div>
+    <div class="citation-author">— ${h(c.citation?.auteur)}</div>
     <div class="citation-modern">${h(c.citation?.traduction)}</div>`;
 
-  // Énigme
-  document.getElementById('block-enigme').innerHTML = `
+  // ÉNIGME
+  document.getElementById('s-enigme').innerHTML = `
     <div class="enigme-emoji">🧩</div>
     <div class="enigme-q">${h(c.enigme?.question)}</div>
-    <button class="enigme-btn" onclick="revealEnigme(this, '${h(c.enigme?.reponse)}')">Voir la réponse</button>
+    <button class="enigme-btn" onclick="revealEnigme(this, '${h(c.enigme?.reponse).replace(/'/g,"\\'")}')">Voir la réponse</button>
     <div class="enigme-rep" id="enigme-rep"></div>`;
 
-  // Quiz
   quizData = c.quiz || [];
   renderQ();
 
   document.getElementById('loading-state').style.display = 'none';
   document.getElementById('content').style.display = 'block';
+
+  // Observer pour la progression
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) markRead(e.target); });
+  }, { threshold: 0.5 });
+  ['s-pays','s-perso','s-art','s-musique','s-idee','s-vivant','s-citation','s-enigme'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
 }
 
 function renderQ() {
@@ -349,8 +447,7 @@ function renderQ() {
   document.getElementById('q-feedback').style.display = 'none';
   document.getElementById('q-next').style.display = 'none';
   answered = false;
-  const opts = document.getElementById('q-opts');
-  opts.innerHTML = q.options.map((o, i) =>
+  document.getElementById('q-opts').innerHTML = q.options.map((o, i) =>
     `<button class="q-opt" onclick="answer(${i})">${o}</button>`
   ).join('');
   document.getElementById('q-score').textContent = `${correct} / ${quizData.length}`;
@@ -376,25 +473,23 @@ function answer(idx) {
 function nextQ() {
   cur++;
   if (cur < quizData.length) { renderQ(); }
-  else { showResult(); }
-}
-
-function showResult() {
-  document.getElementById('quiz-prog').style.width = '100%';
-  document.getElementById('quiz-display').style.display = 'none';
-  const res = document.getElementById('quiz-result');
-  res.style.display = 'block';
-  const emojis = ['😅','😅','🙂','👍','🌟','🏆'];
-  document.getElementById('res-emoji').textContent = emojis[correct] || '🎉';
-  document.getElementById('res-num').textContent = `${correct} / ${quizData.length}`;
-  const labels = ['Encore un effort !','Pas mal !','Pas mal !','Bien joué !','Très bien !','Parfait !'];
-  document.getElementById('res-label').textContent = labels[correct] || 'Bien joué !';
-  const pts = correct * 20 + (correct === quizData.length ? 20 : 0) + 50;
-  document.getElementById('res-badges').innerHTML = [
-    { label: 'Culti lue', pts: 50, ok: true },
-    { label: 'Quiz maîtrisé', pts: correct * 20, ok: correct >= 4 },
-    { label: 'Score parfait', pts: 20, ok: correct === quizData.length }
-  ].map(b => `<div class="badge ${b.ok ? 'earned' : ''}">${b.ok ? '⭐' : '○'} ${b.label} +${b.pts}pts</div>`).join('');
+  else {
+    document.getElementById('quiz-prog').style.width = '100%';
+    document.getElementById('quiz-display').style.display = 'none';
+    const res = document.getElementById('quiz-result');
+    res.style.display = 'block';
+    const emojis = ['😅','😕','🙂','👍','🌟','🏆'];
+    document.getElementById('res-emoji').textContent = emojis[correct] || '🎉';
+    document.getElementById('res-score').textContent = `${correct} / ${quizData.length}`;
+    const labels = ['Continue !','Pas mal !','Bien !','Très bien !','Excellent !','Parfait !'];
+    document.getElementById('res-label').textContent = labels[correct] || 'Bien joué !';
+    document.getElementById('res-badges').innerHTML = [
+      { label: 'Édition lue', pts: 50, ok: true },
+      { label: 'Quiz maîtrisé', pts: correct * 20, ok: correct >= 4 },
+      { label: 'Score parfait', pts: 20, ok: correct === quizData.length }
+    ].map(b => `<div class="badge ${b.ok?'earned':''}">${b.ok?'⭐':'○'} ${b.label} +${b.pts}pts</div>`).join('');
+    markRead(document.getElementById('s-quiz'));
+  }
 }
 
 function revealEnigme(btn, rep) {
