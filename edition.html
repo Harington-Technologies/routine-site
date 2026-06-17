@@ -256,50 +256,49 @@ nav { background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bo
 const SB_URL = 'https://zuahstlswkprzdmflekg.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1YWhzdGxzd2twcnpkbWZsZWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE0NDU2MjMsImV4cCI6MjA5NzAyMTYyM30.-F0WRbiprAa-Zt1ih1QdsQzuuqVW2froK6Ddfvrqoik';
 
-// Photos Picsum — 100% fiables, seeds fixes par thème
+// Dégradés par pays — aucune dépendance externe
 const COVERS = {
-  'Mongolie':  'https://picsum.photos/seed/mongolia/1400/500',
-  'Norvège':   'https://picsum.photos/seed/norway/1400/500',
-  'Japon':     'https://picsum.photos/seed/japan/1400/500',
-  'Brésil':    'https://picsum.photos/seed/brazil/1400/500',
-  'Inde':      'https://picsum.photos/seed/india/1400/500',
-  'Islande':   'https://picsum.photos/seed/iceland/1400/500',
-  'Pérou':     'https://picsum.photos/seed/peru/1400/500',
-  'Grèce':     'https://picsum.photos/seed/greece/1400/500',
-  'Kenya':     'https://picsum.photos/seed/kenya/1400/500',
-  'Maroc':     'https://picsum.photos/seed/morocco/1400/500',
-  'Chine':     'https://picsum.photos/seed/china/1400/500',
-  'Argentine': 'https://picsum.photos/seed/argentina/1400/500',
-  'Égypte':    'https://picsum.photos/seed/egypt/1400/500',
-  'Colombie':  'https://picsum.photos/seed/colombia/1400/500',
-  'Portugal':  'https://picsum.photos/seed/portugal/1400/500',
-  'Mexique':   'https://picsum.photos/seed/mexico/1400/500',
-  'Thaïlande': 'https://picsum.photos/seed/thailand/1400/500',
-  'Vietnam':   'https://picsum.photos/seed/vietnam/1400/500',
-  'Turquie':   'https://picsum.photos/seed/turkey/1400/500',
-  'Australie': 'https://picsum.photos/seed/australia/1400/500',
-  'Cuba':      'https://picsum.photos/seed/cuba/1400/500',
+  'Mongolie':  'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  'Norvège':   'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+  'Japon':     'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+  'Brésil':    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+  'Inde':      'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+  'Islande':   'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+  'Pérou':     'linear-gradient(135deg, #f6d365 0%, #fda085 100%)',
+  'Grèce':     'linear-gradient(135deg, #4facfe 0%, #a8edea 100%)',
+  'Kenya':     'linear-gradient(135deg, #f9d423 0%, #ff4e50 100%)',
+  'Maroc':     'linear-gradient(135deg, #f7971e 0%, #ffd200 100%)',
+  'Chine':     'linear-gradient(135deg, #ff0844 0%, #ffb199 100%)',
+  'Argentine': 'linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%)',
+  'Égypte':    'linear-gradient(135deg, #f6d365 0%, #c79081 100%)',
+  'Colombie':  'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+  'Portugal':  'linear-gradient(135deg, #ff6b6b 0%, #feca57 100%)',
+  'Mexique':   'linear-gradient(135deg, #6c5ce7 0%, #a8edea 100%)',
+  'Thaïlande': 'linear-gradient(135deg, #f9d423 0%, #e040fb 100%)',
+  'Vietnam':   'linear-gradient(135deg, #43e97b 0%, #fa709a 100%)',
+  'Turquie':   'linear-gradient(135deg, #f093fb 0%, #667eea 100%)',
+  'Australie': 'linear-gradient(135deg, #fd746c 0%, #ff9068 100%)',
+  'Cuba':      'linear-gradient(135deg, #f6d365 0%, #fd7036 100%)',
 };
-const DEFAULT = 'https://picsum.photos/seed/travel/1400/500';
 
-function getCoverImg(paysNom) {
-  return COVERS[paysNom] || `https://picsum.photos/seed/${encodeURIComponent(paysNom)}/1400/500`;
+const SECTION_GRADIENTS = {
+  art:    'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
+  music:  'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+  nature: 'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)',
+  perso:  'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+};
+
+function getCoverGradient(paysNom) {
+  const grad = COVERS[paysNom] || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+  return grad;
 }
 
-const ART_IMGS = [
-  'https://picsum.photos/seed/art1/800/300',
-  'https://picsum.photos/seed/art2/800/300',
-  'https://picsum.photos/seed/art3/800/300',
-];
-const MUSIC_IMGS = [
-  'https://picsum.photos/seed/music1/800/300',
-  'https://picsum.photos/seed/music2/800/300',
-];
-const NATURE_IMGS = [
-  'https://picsum.photos/seed/nature1/800/300',
-  'https://picsum.photos/seed/nature2/800/300',
-  'https://picsum.photos/seed/nature3/800/300',
-];
+function makeCoverDiv(gradient, flag, nom) {
+  return `<div style="width:100%;height:100%;background:${gradient};display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+    <div style="font-size:80px;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.2));">${flag}</div>
+    <div style="font-size:22px;font-weight:900;color:white;letter-spacing:0.05em;text-shadow:0 2px 8px rgba(0,0,0,0.3);">${nom}</div>
+  </div>`;
+}
 
 function h(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function ri(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
@@ -331,7 +330,15 @@ async function loadEdition() {
   document.title = `Culti · ${ed.date} · ${c.pays?.nom}`;
 
   const coverImg = getCoverImg(c.pays?.nom);
-  document.getElementById('cover-img').src = coverImg;
+  // Cover avec dégradé + flag
+  const coverGrad = getCoverGradient(c.pays?.nom);
+  const coverEl = document.getElementById('cover-img');
+  const coverParent = coverEl.parentElement;
+  const gradDiv = document.createElement('div');
+  gradDiv.style.cssText = 'position:absolute;inset:0;z-index:0;';
+  gradDiv.innerHTML = makeCoverDiv(coverGrad, c.pays?.flag||'🌍', c.pays?.nom||'');
+  coverParent.insertBefore(gradDiv, coverParent.firstChild);
+  coverEl.style.display = 'none';
   document.getElementById('cover-flag').textContent = c.pays?.flag || '🌍';
   document.getElementById('cover-title').textContent = `${c.pays?.nom} — ${c.pays?.titre}`;
   document.getElementById('cover-date').textContent = ed.date;
@@ -361,7 +368,7 @@ async function loadEdition() {
     <div class="s-body">
       <div class="s-title">${h(c.personnalite?.nom)}</div>
       <div class="s-sub">${h(c.personnalite?.epoque)} · ${h(c.personnalite?.titre)}</div>
-      <img src="https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=800&q=80" class="s-img" alt="Portrait" loading="lazy">
+      <div style="width:100%;height:160px;background:${SECTION_GRADIENTS.perso};border-radius:12px;margin:0.75rem 0;display:flex;align-items:center;justify-content:center;font-size:56px;">👤</div>
       <div class="s-text">${h(c.personnalite?.histoire)}</div>
       ${c.personnalite?.impact ? `<div class="s-text">${h(c.personnalite.impact)}</div>` : ''}
       <div class="lecon">${h(c.personnalite?.lecon)}</div>
@@ -376,7 +383,7 @@ async function loadEdition() {
     <div class="s-body">
       <div class="s-title">${h(c.art?.oeuvre)}</div>
       <div class="s-sub">${h(c.art?.artiste)}, ${h(c.art?.annee)}</div>
-      <img src="${ri(ART_IMGS)}" class="s-img" alt="Art" loading="lazy">
+      <div style="width:100%;height:160px;background:${SECTION_GRADIENTS.art};border-radius:12px;margin:0.75rem 0;display:flex;align-items:center;justify-content:center;font-size:56px;">🎨</div>
       <div class="s-text">${h(c.art?.description)}</div>
       ${c.art?.contexte ? `<div class="s-text" style="color:#718096;font-style:italic;">${h(c.art.contexte)}</div>` : ''}
       <div class="defi">${h(c.art?.defi)}</div>
@@ -392,7 +399,7 @@ async function loadEdition() {
     <div class="s-body">
       <div class="s-title">${h(c.musique?.titre)}</div>
       <div class="s-sub">${h(c.musique?.artiste)}, ${h(c.musique?.annee)}</div>
-      <img src="${ri(MUSIC_IMGS)}" class="s-img" alt="Musique" loading="lazy">
+      <div style="width:100%;height:160px;background:${SECTION_GRADIENTS.music};border-radius:12px;margin:0.75rem 0;display:flex;align-items:center;justify-content:center;font-size:56px;">🎵</div>
       <div class="s-text">${h(c.musique?.anecdote)}</div>
       ${c.musique?.pourquoi_ecouter ? `<div class="s-text">${h(c.musique.pourquoi_ecouter)}</div>` : ''}
       <div class="lecon">${h(c.musique?.lecon)}</div>
@@ -418,7 +425,7 @@ async function loadEdition() {
     </div>
     <div class="s-body">
       <div class="s-title">${h(c.vivant?.animal)}</div>
-      <img src="${ri(NATURE_IMGS)}" class="s-img" alt="${h(c.vivant?.animal)}" loading="lazy">
+      <div style="width:100%;height:160px;background:${SECTION_GRADIENTS.nature};border-radius:12px;margin:0.75rem 0;display:flex;align-items:center;justify-content:center;font-size:56px;">🦁</div>
       <div class="s-text">${h(c.vivant?.fait1)}</div>
       <div class="s-text">${h(c.vivant?.fait2)}</div>
       <div class="lecon">${h(c.vivant?.lecon)}</div>
