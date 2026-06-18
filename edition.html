@@ -306,6 +306,10 @@ function getCoverGradient(nom) {
   return COVERS[nom] || 'linear-gradient(135deg,#667eea,#764ba2)';
 }
 function getCoverImg(nom) { return getCoverGradient(nom); }
+function h(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function makeCoverDiv(gradient, flag, nom) {
+  return '<div style="width:100%;height:100%;background:' + gradient + ';display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;"><div style="font-size:80px;">' + flag + '</div><div style="font-size:22px;font-weight:900;color:white;text-shadow:0 2px 8px rgba(0,0,0,0.3);">' + nom + '</div></div>';
+}
 
 async function loadEdition() {
   const params = new URLSearchParams(window.location.search);
