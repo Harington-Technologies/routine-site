@@ -353,44 +353,42 @@ async function loadEdition() {
 }
 
 async function loadEditionForAudience(audience, date) {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
+  const urlParams = new URLSearchParams(window.location.search);
+  const editionId = urlParams.get('id');
   let data = null;
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
 
   try {
-    // Chercher par date + audience si on a une date
+    // 1. Chercher par date + audience
     if (date) {
-      const res = await fetch(`${SB_URL}/rest/v1/editions?date=eq.${encodeURIComponent(date)}&audience=eq.${audience}&select=*&limit=1`, {
+      const r1 = await fetch(`${SB_URL}/rest/v1/editions?date=eq.${encodeURIComponent(date)}&audience=eq.${audience}&select=*&limit=1`, {
         headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
       });
-      data = await res.json();
+      data = await r1.json();
     }
 
-    // Essayer par ID si fourni
-    if ((!data || !data.length) && id) {
-      const res = await fetch(`${SB_URL}/rest/v1/editions?id=eq.${id}&select=*`, {
+    // 2. Chercher par ID
+    if ((!data || !data.length) && editionId) {
+      const r2 = await fetch(`${SB_URL}/rest/v1/editions?id=eq.${editionId}&select=*`, {
         headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
       });
-      data = await res.json();
-      // Mémoriser la date pour les changements d'audience
+      data = await r2.json();
       if (data && data.length) currentEditionDate = data[0].date;
     }
 
-    // Charger la dernière édition pour cette audience
+    // 3. Dernière édition pour cette audience
     if (!data || !data.length) {
-      const res2 = await fetch(`${SB_URL}/rest/v1/editions?audience=eq.${audience}&select=*&order=created_at.desc&limit=1`, {
+      const r3 = await fetch(`${SB_URL}/rest/v1/editions?audience=eq.${audience}&select=*&order=created_at.desc&limit=1`, {
         headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
       });
-      data = await res2.json();
-      // Fallback → toute audience
-      if (!data || !data.length) {
-        const res3 = await fetch(`${SB_URL}/rest/v1/editions?select=*&order=created_at.desc&limit=1`, {
-          headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
-        });
-        data = await res3.json();
-      }
+      data = await r3.json();
+    }
+
+    // 4. Fallback toute audience
+    if (!data || !data.length) {
+      const r4 = await fetch(`${SB_URL}/rest/v1/editions?select=*&order=created_at.desc&limit=1`, {
+        headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+      });
+      data = await r4.json();
     }
 
     if (!data || !data.length) {
@@ -398,7 +396,7 @@ async function loadEditionForAudience(audience, date) {
       return;
     }
   } catch(err) {
-    document.getElementById('loading-state').innerHTML = `❌ Erreur de chargement : ${err.message}. <a href="archives.html" style="color:#FF6B6B;">← Archives</a>`;
+    document.getElementById('loading-state').innerHTML = `❌ Erreur: ${err.message}. <a href="archives.html" style="color:#FF6B6B;">← Archives</a>`;
     return;
   }
 
