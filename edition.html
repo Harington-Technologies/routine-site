@@ -316,6 +316,46 @@ function markRead(el) {
 
 let quizData=[], cur=0, correct=0, answered=false;
 
+// Dégradés par pays
+const COVERS = {
+  'Mongolie':  'linear-gradient(135deg,#667eea,#764ba2)',
+  'Norvège':   'linear-gradient(135deg,#4facfe,#00f2fe)',
+  'Japon':     'linear-gradient(135deg,#f093fb,#f5576c)',
+  'Brésil':    'linear-gradient(135deg,#43e97b,#38f9d7)',
+  'Inde':      'linear-gradient(135deg,#fa709a,#fee140)',
+  'Islande':   'linear-gradient(135deg,#a1c4fd,#c2e9fb)',
+  'Pérou':     'linear-gradient(135deg,#f6d365,#fda085)',
+  'Grèce':     'linear-gradient(135deg,#4facfe,#a8edea)',
+  'Kenya':     'linear-gradient(135deg,#f9d423,#ff4e50)',
+  'Maroc':     'linear-gradient(135deg,#f7971e,#ffd200)',
+  'Chine':     'linear-gradient(135deg,#ff0844,#ffb199)',
+  'Argentine': 'linear-gradient(135deg,#74b9ff,#a29bfe)',
+  'Égypte':    'linear-gradient(135deg,#f6d365,#c79081)',
+  'Colombie':  'linear-gradient(135deg,#f093fb,#f5576c)',
+  'Portugal':  'linear-gradient(135deg,#ff6b6b,#feca57)',
+  'Mexique':   'linear-gradient(135deg,#6c5ce7,#a8edea)',
+  'Thaïlande': 'linear-gradient(135deg,#f9d423,#e040fb)',
+  'Vietnam':   'linear-gradient(135deg,#43e97b,#fa709a)',
+  'Turquie':   'linear-gradient(135deg,#f093fb,#667eea)',
+  'Australie': 'linear-gradient(135deg,#fd746c,#ff9068)',
+  'Cuba':      'linear-gradient(135deg,#f6d365,#fd7036)',
+};
+
+const SECTION_GRADIENTS = {
+  art:    'linear-gradient(135deg,#a18cd1,#fbc2eb)',
+  music:  'linear-gradient(135deg,#ffecd2,#fcb69f)',
+  nature: 'linear-gradient(135deg,#d4fc79,#96e6a1)',
+  perso:  'linear-gradient(135deg,#a1c4fd,#c2e9fb)',
+};
+
+function getCoverGradient(nom) {
+  return COVERS[nom] || 'linear-gradient(135deg,#667eea,#764ba2)';
+}
+
+function getCoverImg(nom) {
+  return getCoverGradient(nom);
+}
+
 async function loadEdition() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
