@@ -168,6 +168,14 @@ nav { background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bo
   .s-header { padding: 1.25rem 1.25rem 0; }
   .progress-bar { padding: 0.75rem 1.25rem; }
 }
+
+/* AUDIENCE SWITCHER */
+.audience-bar { background: white; border-bottom: 2px solid #FFE5D0; padding: 0.75rem 2rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.audience-label { font-size: 12px; font-weight: 800; color: #718096; text-transform: uppercase; letter-spacing: 0.1em; margin-right: 4px; }
+.audience-btn { border: 2px solid #FFE5D0; background: white; border-radius: 50px; padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif; color: #4A5568; transition: all 0.15s; display: flex; align-items: center; gap: 6px; }
+.audience-btn:hover { border-color: #FF6B6B; color: #FF6B6B; }
+.audience-btn.active { background: #FF6B6B; border-color: #FF6B6B; color: white; }
+.audience-btn .btn-emoji { font-size: 16px; }
 </style>
 </head>
 <body>
@@ -205,6 +213,14 @@ nav { background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bo
     <span class="progress-label">Progression de lecture</span>
     <div class="progress-track"><div class="progress-fill" id="read-prog"></div></div>
     <span class="progress-count" id="read-count">0 / 8</span>
+  </div>
+
+  <div class="audience-bar">
+    <span class="audience-label">Version :</span>
+    <button class="audience-btn active" onclick="switchAudience('enfant', this)"><span class="btn-emoji">🧒</span> Enfant</button>
+    <button class="audience-btn" onclick="switchAudience('ado', this)"><span class="btn-emoji">🎧</span> Ado</button>
+    <button class="audience-btn active" onclick="switchAudience('adulte', this)"><span class="btn-emoji">📰</span> Adulte</button>
+    <button class="audience-btn" onclick="switchAudience('senior', this)"><span class="btn-emoji">🎭</span> Sénior</button>
   </div>
 
   <div class="page">
@@ -311,26 +327,70 @@ function makeCoverDiv(gradient, flag, nom) {
   return '<div style="width:100%;height:100%;background:' + gradient + ';display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;"><div style="font-size:80px;">' + flag + '</div><div style="font-size:22px;font-weight:900;color:white;text-shadow:0 2px 8px rgba(0,0,0,0.3);">' + nom + '</div></div>';
 }
 
+let currentAudience = 'adulte';
+let currentEditionDate = null;
+
+async function switchAudience(audience, btn) {
+  document.querySelectorAll('.audience-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentAudience = audience;
+  // Afficher loading
+  document.getElementById('content').style.opacity = '0.5';
+  await loadEditionForAudience(audience, currentEditionDate);
+  document.getElementById('content').style.opacity = '1';
+}
+
 async function loadEdition() {
+  // Charger d'abord la version adulte
+  const params = new URLSearchParams(window.location.search);
+  const audience = params.get('audience') || 'adulte';
+  currentAudience = audience;
+  // Activer le bon bouton
+  document.querySelectorAll('.audience-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.toLowerCase().includes(audience));
+  });
+  await loadEditionForAudience(audience, null);
+}
+
+async function loadEditionForAudience(audience, date) {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
   let data = null;
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
 
   try {
-    // Essayer d'abord l'ID demandé
-    if (id) {
-      const res = await fetch(`${SB_URL}/rest/v1/editions?id=eq.${id}&select=*`, {
+    // Chercher par date + audience si on a une date
+    if (date) {
+      const res = await fetch(`${SB_URL}/rest/v1/editions?date=eq.${encodeURIComponent(date)}&audience=eq.${audience}&select=*&limit=1`, {
         headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
       });
       data = await res.json();
     }
 
-    // Si pas trouvé ou pas d'ID → charger la dernière édition
+    // Essayer par ID si fourni
+    if ((!data || !data.length) && id) {
+      const res = await fetch(`${SB_URL}/rest/v1/editions?id=eq.${id}&select=*`, {
+        headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+      });
+      data = await res.json();
+      // Mémoriser la date pour les changements d'audience
+      if (data && data.length) currentEditionDate = data[0].date;
+    }
+
+    // Charger la dernière édition pour cette audience
     if (!data || !data.length) {
-      const res2 = await fetch(`${SB_URL}/rest/v1/editions?select=*&order=created_at.desc&limit=1`, {
+      const res2 = await fetch(`${SB_URL}/rest/v1/editions?audience=eq.${audience}&select=*&order=created_at.desc&limit=1`, {
         headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
       });
       data = await res2.json();
+      // Fallback → toute audience
+      if (!data || !data.length) {
+        const res3 = await fetch(`${SB_URL}/rest/v1/editions?select=*&order=created_at.desc&limit=1`, {
+          headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+        });
+        data = await res3.json();
+      }
     }
 
     if (!data || !data.length) {
@@ -343,6 +403,22 @@ async function loadEdition() {
   }
 
   const ed = data[0]; const c = ed.contenu;
+  if (!currentEditionDate) currentEditionDate = ed.date;
+
+  // Adapter le style selon l'audience
+  const audienceStyles = {
+    enfant: { fontSize: '17px', lineHeight: '2', bodyBg: '#FFF9F0' },
+    ado:    { fontSize: '15px', lineHeight: '1.85', bodyBg: '#F9F6F2' },
+    adulte: { fontSize: '15px', lineHeight: '1.85', bodyBg: '#F9F6F2' },
+    senior: { fontSize: '17px', lineHeight: '2', bodyBg: '#FFF9F0' },
+  };
+  const style = audienceStyles[audience] || audienceStyles.adulte;
+  document.body.style.fontSize = style.fontSize;
+  document.body.style.background = style.bodyBg;
+  document.querySelectorAll('.s-text').forEach(el => {
+    el.style.fontSize = style.fontSize;
+    el.style.lineHeight = style.lineHeight;
+  });
   document.title = `Culti · ${ed.date} · ${c.pays?.nom}`;
 
   const coverImg = getCoverImg(c.pays?.nom);
@@ -366,7 +442,7 @@ async function loadEdition() {
       <div class="s-icon s-icon-coral">🌍</div>
       <div><div class="s-label s-label-coral">Le monde</div></div>
     </div>
-    <img src="${coverImg}" class="s-img s-img-wide" alt="${h(c.pays?.nom)}" loading="lazy">
+    <div style="width:100%;height:180px;background:${getCoverGradient(c.pays?.nom)};border-radius:12px;margin:0.75rem 0;display:flex;align-items:center;justify-content:center;font-size:72px;">${c.pays?.flag||'🌍'}</div>
     <div class="s-body">
       <div class="s-title">${h(c.pays?.nom)} — ${h(c.pays?.titre)}</div>
       <div class="s-text">${h(c.pays?.intro)}</div>
